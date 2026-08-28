@@ -7,10 +7,9 @@ export default function AboutStats() {
   const [isOverviewVisible, setIsOverviewVisible] = useState(false);
 
   const quotesRef = useRef(null);
-  const overviewRef = useRef(null);
 
   useEffect(() => {
-    // Observer for Quotes Banner
+    // Single observer for Section 2 (Quote Banner Entrance)
     const quotesObserver = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting && entry.boundingClientRect.top >= 0) {
@@ -20,31 +19,19 @@ export default function AboutStats() {
       { threshold: 0.2 }
     );
 
-    // Observer for Overview Header & Stat Cards
-    const overviewObserver = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsOverviewVisible(true);
-        }
-      },
-      { threshold: 0.3 }
-    );
-
     if (quotesRef.current) quotesObserver.observe(quotesRef.current);
-    if (overviewRef.current) overviewObserver.observe(overviewRef.current);
 
     return () => {
       if (quotesRef.current) quotesObserver.unobserve(quotesRef.current);
-      if (overviewRef.current) overviewObserver.unobserve(overviewRef.current);
     };
   }, []);
 
-  // Generous delay: Trigger Overview animation 5.2s after Quotes start (1.2s after Quote 2 finishes)
+  // Overview animation is strictly chained: triggers 4.1s after quotes start (right after Quote 2 morph finishes!)
   useEffect(() => {
     if (isQuotesVisible) {
       const timer = setTimeout(() => {
         setIsOverviewVisible(true);
-      }, 5200);
+      }, 4100);
       return () => clearTimeout(timer);
     }
   }, [isQuotesVisible]);
@@ -62,7 +49,7 @@ export default function AboutStats() {
         justifyContent: 'center',
       }}
     >
-      {/* Quote Banner Section with Sequential Text Morphing */}
+      {/* Quote Banner Section */}
       <div
         ref={quotesRef}
         style={{
@@ -103,8 +90,8 @@ export default function AboutStats() {
         </div>
       </div>
 
-      {/* Overview Section (Generous Delay After Quotes & Scroll Triggered) */}
-      <div ref={overviewRef}>
+      {/* Overview Section (Strictly stays hidden until Quote 2 completes!) */}
+      <div>
         <div
           className={`section-header ${isOverviewVisible ? 'overview-text-active' : 'overview-text-hidden'}`}
         >
@@ -134,7 +121,7 @@ export default function AboutStats() {
                 alignItems: 'center',
                 justifyContent: 'space-between',
                 gap: '16px',
-                animationDelay: `${0.25 + idx * 0.2}s`,
+                animationDelay: `${0.2 + idx * 0.2}s`,
               }}
             >
               <div>
