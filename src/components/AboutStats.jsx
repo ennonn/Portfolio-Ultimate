@@ -44,7 +44,7 @@ export default function AboutStats() {
         justifyContent: 'center',
       }}
     >
-      {/* Quote Banner Section with Scroll-Triggered Slow Text Morph Effect */}
+      {/* Quote Banner Section with Sequential Text Morph Effect */}
       <div
         style={{
           display: 'flex',
@@ -75,7 +75,7 @@ export default function AboutStats() {
               fontSize: 'clamp(1.6rem, 3.5vw, 2.4rem)',
               fontWeight: '700',
               lineHeight: 1.3,
-              color: 'var(--text-muted)',
+              color: 'var(--text-main)',
               letterSpacing: '-0.02em',
             }}
           >
