@@ -171,17 +171,17 @@ export default function ProjectDetailModal({ project, onClose }) {
             ))}
           </div>
 
-          {/* 3. CENTERED DESKTOP FRAME WITH GENEROUS LEFT/RIGHT MARGINS (MATCHING USER SCREENSHOT) */}
+          {/* 3. CENTERED DESKTOP FRAME (No Poster Covering Video, Native Controls Included) */}
           <div
             style={{
-              maxWidth: '700px',
-              width: '85%',
+              maxWidth: '720px',
+              width: '88%',
               margin: '0 auto',
               borderRadius: '0px',
               overflow: 'hidden',
               border: '1px solid var(--border-subtle)',
               background: '#09090b',
-              boxShadow: '0 8px 24px rgba(0,0,0,0.08)',
+              boxShadow: '0 8px 24px rgba(0,0,0,0.12)',
             }}
           >
             <video
@@ -192,15 +192,17 @@ export default function ProjectDetailModal({ project, onClose }) {
               loop
               muted
               playsInline
-              poster={project.image}
+              controls
               style={{
                 width: '100%',
                 height: 'auto',
                 borderRadius: '0px',
                 display: 'block',
+                background: '#09090b',
               }}
             >
               <source src={project.videoUrl} type="video/mp4" />
+              Your browser does not support HTML5 video playback.
             </video>
           </div>
 
