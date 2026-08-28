@@ -1,290 +1,276 @@
-import React, { useEffect } from 'react';
-import { ArrowLeft, ExternalLink, Smartphone, Server, Layers, ShieldCheck, Database, Globe, CheckCircle } from 'lucide-react';
+import React from 'react';
+import { ArrowLeft, ExternalLink, Play, CheckCircle2, Server, Database, Smartphone, ShieldCheck } from 'lucide-react';
 import { GithubIcon } from './BrandIcons';
 
 export default function ProjectDetailView({ project, onBack }) {
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, [project]);
-
-  if (!project) return null;
-
   const { details } = project;
 
   return (
-    <div className="section-container" style={{ paddingTop: '120px', paddingBottom: '100px' }}>
+    <div
+      style={{
+        maxWidth: '1100px',
+        margin: '0 auto',
+        padding: '120px clamp(20px, 4vw, 48px) 80px',
+      }}
+    >
       {/* Back Button */}
       <button
         onClick={onBack}
-        className="btn btn-secondary"
         style={{
-          padding: '8px 16px',
-          fontSize: '0.85rem',
+          display: 'inline-flex',
+          alignItems: 'center',
+          gap: '8px',
+          background: 'none',
+          border: 'none',
+          color: 'var(--text-muted)',
+          fontSize: '0.9rem',
+          fontWeight: '600',
+          cursor: 'pointer',
           marginBottom: '28px',
+          padding: '4px 0',
+          transition: 'color 0.15s ease',
         }}
+        onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--text-main)')}
+        onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-muted)')}
       >
         <ArrowLeft size={16} />
-        <span>All Projects</span>
+        <span>Back to All Projects</span>
       </button>
 
-      {/* Project Title & Subtitle */}
-      <div style={{ marginBottom: '24px' }}>
+      {/* Project Title & Category */}
+      <div style={{ marginBottom: '32px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '14px' }}>
+          <span
+            style={{
+              padding: '4px 12px',
+              borderRadius: '6px',
+              background: 'var(--btn-secondary-bg)',
+              border: '1px solid var(--border-subtle)',
+              color: 'var(--text-main)',
+              fontSize: '0.8rem',
+              fontWeight: '700',
+              textTransform: 'uppercase',
+              letterSpacing: '0.06em',
+            }}
+          >
+            {project.category}
+          </span>
+          <span style={{ fontSize: '0.85rem', color: 'var(--text-subtle)' }}>
+            Production Release
+          </span>
+        </div>
+
         <h1
           style={{
-            fontSize: 'clamp(2rem, 4vw, 2.8rem)',
+            fontSize: 'clamp(2.2rem, 4vw, 3.2rem)',
             fontWeight: '800',
-            lineHeight: 1.15,
-            marginBottom: '10px',
+            lineHeight: 1.1,
             color: 'var(--text-main)',
+            marginBottom: '12px',
           }}
         >
           {project.title}
         </h1>
 
-        <p
-          style={{
-            fontSize: '1.15rem',
-            color: 'var(--text-muted)',
-            fontWeight: '500',
-            maxWidth: '720px',
-            marginBottom: '16px',
-          }}
-        >
+        <p style={{ fontSize: '1.15rem', color: 'var(--text-muted)', maxWidth: '780px' }}>
           {details?.subtitle || project.shortDesc}
         </p>
-
-        <p style={{ fontSize: '0.95rem', color: 'var(--text-subtle)', lineHeight: 1.6, maxWidth: '800px' }}>
-          {details?.description || project.shortDesc}
-        </p>
       </div>
 
-      {/* Tech Tags Row */}
-      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginBottom: '28px' }}>
-        {project.tags.map((tag) => (
-          <span key={tag} className="pill-badge" style={{ padding: '4px 12px', fontSize: '0.8rem' }}>
-            {tag}
-          </span>
-        ))}
-      </div>
-
-      {/* Image Banner */}
+      {/* Video Walkthrough / Interactive Media Container */}
       <div
         className="clean-card"
         style={{
-          width: '100%',
-          height: '420px',
-          borderRadius: '16px',
+          borderRadius: '20px',
           overflow: 'hidden',
-          marginBottom: '32px',
+          marginBottom: '48px',
+          background: '#000000',
         }}
       >
-        <img
-          src={project.image}
-          alt={project.title}
-          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-        />
+        <div
+          style={{
+            padding: '12px 20px',
+            background: 'rgba(255, 255, 255, 0.05)',
+            borderBottom: '1px solid var(--border-subtle)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+          }}
+        >
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <Play size={14} color="#10b981" />
+            <span style={{ fontSize: '0.82rem', fontWeight: '700', color: '#ffffff', letterSpacing: '0.04em' }}>
+              VIDEO WALKTHROUGH & INTERACTIVE DEMONSTRATION
+            </span>
+          </div>
+          <span style={{ fontSize: '0.78rem', color: 'var(--text-subtle)' }}>
+            Full HD Screen Recording
+          </span>
+        </div>
+
+        <div style={{ width: '100%', maxHeight: '560px', overflow: 'hidden' }}>
+          {project.videoUrl ? (
+            <video
+              src={project.videoUrl}
+              controls
+              poster={project.image}
+              style={{
+                width: '100%',
+                maxHeight: '560px',
+                objectFit: 'cover',
+                display: 'block',
+              }}
+            >
+              Your browser does not support HTML5 video playback.
+            </video>
+          ) : (
+            <img
+              src={project.image}
+              alt={project.title}
+              style={{ width: '100%', maxHeight: '560px', objectFit: 'cover' }}
+            />
+          )}
+        </div>
       </div>
 
-      {/* Project Links Bar */}
+      {/* Action Bar Links */}
       <div
-        className="clean-card"
         style={{
-          padding: '20px 24px',
-          borderRadius: '12px',
-          marginBottom: '40px',
           display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
           flexWrap: 'wrap',
-          gap: '16px',
+          gap: '14px',
+          marginBottom: '48px',
         }}
       >
-        <div>
-          <h4 style={{ fontSize: '0.92rem', fontWeight: '700', color: 'var(--text-main)', marginBottom: '2px' }}>
-            Project Links
-          </h4>
-          <p style={{ fontSize: '0.8rem', color: 'var(--text-subtle)' }}>
-            Open live application or inspect code repositories.
-          </p>
-        </div>
+        {project.liveUrl && (
+          <a
+            href={project.liveUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="btn btn-primary"
+            style={{ padding: '12px 24px', borderRadius: '9999px' }}
+          >
+            <span>Live Demonstration</span>
+            <ExternalLink size={16} />
+          </a>
+        )}
 
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
-          {project.liveUrl && (
-            <a
-              href={project.liveUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="btn btn-primary"
-              style={{ padding: '8px 16px', fontSize: '0.85rem' }}
-            >
-              <ExternalLink size={15} />
-              <span>Live Site</span>
-            </a>
-          )}
-          {project.githubUrl && (
-            <a
-              href={project.githubUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="btn btn-secondary"
-              style={{ padding: '8px 16px', fontSize: '0.85rem' }}
-            >
-              <GithubIcon size={15} />
-              <span>Web Repository</span>
-            </a>
-          )}
-          {project.mobileUrl && (
-            <a
-              href={project.mobileUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="btn btn-secondary"
-              style={{ padding: '8px 16px', fontSize: '0.85rem' }}
-            >
-              <Smartphone size={15} />
-              <span>Mobile Repository</span>
-            </a>
-          )}
-        </div>
+        {project.githubUrl && (
+          <a
+            href={project.githubUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="btn btn-secondary"
+            style={{ padding: '12px 24px', borderRadius: '9999px' }}
+          >
+            <GithubIcon size={16} />
+            <span>GitHub Repository</span>
+          </a>
+        )}
+
+        {project.mobileUrl && (
+          <a
+            href={project.mobileUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="btn btn-secondary"
+            style={{ padding: '12px 24px', borderRadius: '9999px' }}
+          >
+            <Smartphone size={16} />
+            <span>Mobile App Code</span>
+          </a>
+        )}
       </div>
 
-      {/* 2 Column Details Layout */}
+      {/* Overview & Context Grid */}
       <div
         style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
           gap: '32px',
-          marginBottom: '40px',
+          marginBottom: '48px',
         }}
       >
-        {/* Left Column: Coordinated Architecture & Security */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-          {/* Coordinated Architecture */}
-          <div className="clean-card" style={{ padding: '24px', borderRadius: '14px' }}>
-            <h3 style={{ fontSize: '1.1rem', fontWeight: '700', marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <Server size={18} />
-              <span>Coordinated Architecture</span>
-            </h3>
-
-            {details?.architecture ? (
-              details.architecture.map((arch, i) => (
-                <div key={i} style={{ marginBottom: '14px' }}>
-                  <h4 style={{ fontSize: '0.9rem', fontWeight: '600', color: 'var(--text-main)', marginBottom: '3px' }}>
-                    {arch.role}
-                  </h4>
-                  <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>
-                    {arch.text}
-                  </p>
-                </div>
-              ))
-            ) : (
-              <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>
-                Built with modern component architecture and serverless database integrations.
-              </p>
-            )}
-          </div>
-
-          {/* Security & Operations */}
-          <div className="clean-card" style={{ padding: '24px', borderRadius: '14px' }}>
-            <h3 style={{ fontSize: '1.1rem', fontWeight: '700', marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <ShieldCheck size={18} />
-              <span>Security & Core Features</span>
-            </h3>
-
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '14px' }}>
-              <div>
-                <h4 style={{ fontSize: '0.85rem', fontWeight: '600', color: 'var(--text-main)', marginBottom: '2px' }}>
-                  Device-Bound Verification
-                </h4>
-                <p style={{ fontSize: '0.78rem', color: 'var(--text-subtle)' }}>
-                  Generates cryptographic signatures verifying identity.
-                </p>
-              </div>
-
-              <div>
-                <h4 style={{ fontSize: '0.85rem', fontWeight: '600', color: 'var(--text-main)', marginBottom: '2px' }}>
-                  Location Check
-                </h4>
-                <p style={{ fontSize: '0.78rem', color: 'var(--text-subtle)' }}>
-                  Foreground GPS validation within assigned geofences.
-                </p>
-              </div>
-
-              <div>
-                <h4 style={{ fontSize: '0.85rem', fontWeight: '600', color: 'var(--text-main)', marginBottom: '2px' }}>
-                  Auditability
-                </h4>
-                <p style={{ fontSize: '0.78rem', color: 'var(--text-subtle)' }}>
-                  Structured reporting logs for audit trails.
-                </p>
-              </div>
-            </div>
-          </div>
+        {/* Project Description */}
+        <div className="clean-card" style={{ padding: '32px', borderRadius: '18px' }}>
+          <h3 style={{ fontSize: '1.25rem', fontWeight: '800', marginBottom: '16px', color: 'var(--text-main)' }}>
+            System Scope & Overview
+          </h3>
+          <p style={{ fontSize: '1rem', color: 'var(--text-muted)', lineHeight: 1.7 }}>
+            {details?.description || project.shortDesc}
+          </p>
         </div>
 
-        {/* Right Column: Sidebar Info Cards (Tech Stack, Context, Deployment) */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-          {/* Tech Stack Box */}
-          <div className="clean-card" style={{ padding: '20px', borderRadius: '14px' }}>
-            <h4 style={{ fontSize: '0.92rem', fontWeight: '700', marginBottom: '12px' }}>
-              Tech Stack
-            </h4>
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
-              {project.tags.map((tag) => (
-                <span key={tag} className="pill-badge">
-                  {tag}
-                </span>
-              ))}
+        {/* System Context Box */}
+        {details?.context && (
+          <div className="clean-card" style={{ padding: '32px', borderRadius: '18px' }}>
+            <h3 style={{ fontSize: '1.25rem', fontWeight: '800', marginBottom: '20px', color: 'var(--text-main)' }}>
+              Deployment Metadata
+            </h3>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+              <div>
+                <p style={{ fontSize: '0.78rem', color: 'var(--text-subtle)', fontWeight: '700', textTransform: 'uppercase' }}>System Architecture</p>
+                <p style={{ fontSize: '0.95rem', color: 'var(--text-main)', fontWeight: '600' }}>{details.context.type}</p>
+              </div>
+              <div>
+                <p style={{ fontSize: '0.78rem', color: 'var(--text-subtle)', fontWeight: '700', textTransform: 'uppercase' }}>Clients & Interfaces</p>
+                <p style={{ fontSize: '0.95rem', color: 'var(--text-main)', fontWeight: '600' }}>{details.context.clients}</p>
+              </div>
+              <div>
+                <p style={{ fontSize: '0.78rem', color: 'var(--text-subtle)', fontWeight: '700', textTransform: 'uppercase' }}>Primary Scope</p>
+                <p style={{ fontSize: '0.95rem', color: 'var(--text-main)', fontWeight: '600' }}>{details.context.scope}</p>
+              </div>
             </div>
           </div>
+        )}
+      </div>
 
-          {/* Context Box */}
-          {details?.context && (
-            <div className="clean-card" style={{ padding: '20px', borderRadius: '14px' }}>
-              <h4 style={{ fontSize: '0.92rem', fontWeight: '700', marginBottom: '12px' }}>
-                Context
-              </h4>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', fontSize: '0.85rem' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                  <span style={{ color: 'var(--text-subtle)' }}>Type:</span>
-                  <span style={{ fontWeight: '600', color: 'var(--text-main)' }}>{details.context.type}</span>
-                </div>
-                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                  <span style={{ color: 'var(--text-subtle)' }}>Clients:</span>
-                  <span style={{ fontWeight: '600', color: 'var(--text-main)' }}>{details.context.clients}</span>
-                </div>
-                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                  <span style={{ color: 'var(--text-subtle)' }}>Scope:</span>
-                  <span style={{ fontWeight: '600', color: 'var(--text-main)' }}>{details.context.scope}</span>
+      {/* Key Architecture Features */}
+      {details?.architecture && (
+        <div className="clean-card" style={{ padding: '36px', borderRadius: '20px', marginBottom: '48px' }}>
+          <h3 style={{ fontSize: '1.35rem', fontWeight: '800', marginBottom: '24px', color: 'var(--text-main)' }}>
+            Technical Architecture & Implementation Highlights
+          </h3>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+            {details.architecture.map((item, idx) => (
+              <div key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: '14px' }}>
+                <CheckCircle2 size={20} color="#10b981" style={{ marginTop: '2px', flexShrink: 0 }} />
+                <div>
+                  <h4 style={{ fontSize: '1rem', fontWeight: '700', color: 'var(--text-main)', marginBottom: '4px' }}>
+                    {item.role}
+                  </h4>
+                  <p style={{ fontSize: '0.92rem', color: 'var(--text-muted)', lineHeight: 1.5 }}>
+                    {item.text}
+                  </p>
                 </div>
               </div>
-            </div>
-          )}
+            ))}
+          </div>
+        </div>
+      )}
 
-          {/* Deployment Box */}
-          {details?.deployment && (
-            <div className="clean-card" style={{ padding: '20px', borderRadius: '14px' }}>
-              <h4 style={{ fontSize: '0.92rem', fontWeight: '700', marginBottom: '12px' }}>
-                Deployment Stack
-              </h4>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', fontSize: '0.85rem' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                  <span style={{ color: 'var(--text-subtle)' }}>Web:</span>
-                  <span style={{ fontWeight: '600', color: 'var(--text-main)' }}>{details.deployment.web}</span>
-                </div>
-                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                  <span style={{ color: 'var(--text-subtle)' }}>Database:</span>
-                  <span style={{ fontWeight: '600', color: 'var(--text-main)' }}>{details.deployment.database}</span>
-                </div>
-                {details.deployment.mobile && (
-                  <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                    <span style={{ color: 'var(--text-subtle)' }}>Mobile:</span>
-                    <span style={{ fontWeight: '600', color: 'var(--text-main)' }}>{details.deployment.mobile}</span>
-                  </div>
-                )}
-              </div>
-            </div>
-          )}
+      {/* Deployment Stack Tags */}
+      <div className="clean-card" style={{ padding: '28px', borderRadius: '16px' }}>
+        <h3 style={{ fontSize: '1.05rem', fontWeight: '800', marginBottom: '16px', color: 'var(--text-main)' }}>
+          Technologies & Infrastructure
+        </h3>
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+          {project.tags.map((tag) => (
+            <span
+              key={tag}
+              style={{
+                padding: '8px 16px',
+                borderRadius: '8px',
+                background: 'var(--btn-secondary-bg)',
+                border: '1px solid var(--border-subtle)',
+                fontSize: '0.85rem',
+                fontWeight: '600',
+                color: 'var(--text-main)',
+              }}
+            >
+              {tag}
+            </span>
+          ))}
         </div>
       </div>
     </div>

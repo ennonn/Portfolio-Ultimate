@@ -1,91 +1,60 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { portfolioData } from '../data/portfolioData';
-import { ExternalLink, Layers, Eye } from 'lucide-react';
-import { GithubIcon } from './BrandIcons';
+import { ArrowRight, Layers } from 'lucide-react';
 
-export default function Projects({ onSelectProject }) {
-  const { projects } = portfolioData;
-  const [activeCategory, setActiveCategory] = useState('All');
-
-  const categories = ['All', 'Full-Stack', 'Frontend', 'Web App'];
-
-  const filteredProjects = activeCategory === 'All'
-    ? projects
-    : projects.filter(p => p.category.toLowerCase().includes(activeCategory.toLowerCase()));
+export default function Projects({ onSelectProject, onViewAllProjects }) {
+  const topProjects = portfolioData.projects.slice(0, 5);
 
   return (
     <section id="projects" className="section-container">
+      {/* Section Header */}
       <div className="section-header">
         <div className="tag">
-          <span>Projects</span>
+          <span>FEATURED WORK</span>
         </div>
-        <h2>Crafted Projects</h2>
-        <p>
-          Featured web systems, operational platforms, and developer software.
-        </p>
+        <h2>Shipped Products & Software Systems</h2>
+        <p>Production web platforms, GovTech systems, and developer software.</p>
       </div>
 
-      {/* Category Filter Pills */}
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'flex-start',
-          flexWrap: 'wrap',
-          gap: '8px',
-          marginBottom: '32px',
-        }}
-      >
-        {categories.map((cat) => (
-          <button
-            key={cat}
-            onClick={() => setActiveCategory(cat)}
-            style={{
-              padding: '6px 16px',
-              borderRadius: '6px',
-              border: activeCategory === cat ? '1px solid var(--text-main)' : '1px solid var(--border-subtle)',
-              background: activeCategory === cat ? 'var(--btn-primary-bg)' : 'var(--bg-card)',
-              color: activeCategory === cat ? 'var(--btn-primary-text)' : 'var(--text-muted)',
-              fontWeight: '600',
-              fontSize: '0.85rem',
-              cursor: 'pointer',
-              transition: 'all 0.15s ease',
-            }}
-          >
-            {cat}
-          </button>
-        ))}
-      </div>
-
-      {/* Projects 2-Column Grid System */}
+      {/* Grid: 5 Top Projects + 1 "View All Projects" Card */}
       <div
         style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+          gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
           gap: '24px',
         }}
       >
-        {filteredProjects.map((project) => (
+        {topProjects.map((project) => (
           <div
             key={project.id}
+            onClick={() => onSelectProject(project.id)}
             className="clean-card"
             style={{
               display: 'flex',
               flexDirection: 'column',
+              borderRadius: '16px',
               overflow: 'hidden',
-              borderRadius: '12px',
+              cursor: 'pointer',
+              transition: 'transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'translateY(-4px)';
+              e.currentTarget.style.borderColor = 'var(--border-hover)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = 'translateY(0)';
+              e.currentTarget.style.borderColor = 'var(--border-subtle)';
             }}
           >
-            {/* Image Thumbnail */}
+            {/* Project Image Box */}
             <div
               style={{
-                position: 'relative',
-                height: '200px',
                 width: '100%',
+                height: '210px',
+                position: 'relative',
                 overflow: 'hidden',
                 background: 'var(--bg-surface)',
-                cursor: 'pointer',
               }}
-              onClick={() => onSelectProject(project)}
             >
               <img
                 src={project.image}
@@ -96,65 +65,66 @@ export default function Projects({ onSelectProject }) {
                   objectFit: 'cover',
                   transition: 'transform 0.3s ease',
                 }}
-                onMouseEnter={(e) => (e.target.style.transform = 'scale(1.04)')}
-                onMouseLeave={(e) => (e.target.style.transform = 'scale(1)')}
               />
-              <div
+              <span
                 style={{
                   position: 'absolute',
-                  top: '10px',
-                  right: '10px',
-                  padding: '3px 8px',
-                  borderRadius: '4px',
-                  background: 'var(--bg-card)',
-                  border: '1px solid var(--border-subtle)',
-                  fontSize: '0.72rem',
-                  fontWeight: '600',
-                  color: 'var(--text-main)',
+                  top: '12px',
+                  right: '12px',
+                  padding: '4px 12px',
+                  borderRadius: '6px',
+                  background: 'rgba(0, 0, 0, 0.75)',
+                  backdropFilter: 'blur(8px)',
+                  color: '#ffffff',
+                  fontSize: '0.75rem',
+                  fontWeight: '700',
+                  letterSpacing: '0.04em',
                 }}
               >
                 {project.category}
-              </div>
+              </span>
             </div>
 
-            {/* Content Body */}
-            <div style={{ padding: '20px', flex: 1, display: 'flex', flexDirection: 'column' }}>
-              <h3
-                style={{
-                  fontSize: '1.15rem',
-                  fontWeight: '700',
-                  marginBottom: '8px',
-                  lineHeight: 1.3,
-                  color: 'var(--text-main)',
-                  cursor: 'pointer',
-                }}
-                onClick={() => onSelectProject(project)}
-              >
-                {project.title}
-              </h3>
+            {/* Project Card Content */}
+            <div
+              style={{
+                padding: '22px',
+                display: 'flex',
+                flexDirection: 'column',
+                flexGrow: 1,
+                justifyContent: 'space-between',
+              }}
+            >
+              <div>
+                <h3
+                  style={{
+                    fontSize: '1.15rem',
+                    fontWeight: '800',
+                    marginBottom: '10px',
+                    color: 'var(--text-main)',
+                    lineHeight: 1.3,
+                  }}
+                >
+                  {project.title}
+                </h3>
+                <p
+                  style={{
+                    fontSize: '0.88rem',
+                    color: 'var(--text-muted)',
+                    marginBottom: '18px',
+                    lineHeight: 1.5,
+                  }}
+                >
+                  {project.shortDesc}
+                </p>
+              </div>
 
-              <p
-                style={{
-                  fontSize: '0.88rem',
-                  color: 'var(--text-muted)',
-                  marginBottom: '16px',
-                  flex: 1,
-                  display: '-webkit-box',
-                  WebkitLineClamp: 3,
-                  WebkitBoxOrient: 'vertical',
-                  overflow: 'hidden',
-                }}
-              >
-                {project.shortDesc}
-              </p>
-
-              {/* Tech Tags */}
+              {/* Tech Stack Pills */}
               <div
                 style={{
                   display: 'flex',
                   flexWrap: 'wrap',
                   gap: '6px',
-                  marginBottom: '16px',
                 }}
               >
                 {project.tags.map((tag) => (
@@ -163,75 +133,75 @@ export default function Projects({ onSelectProject }) {
                   </span>
                 ))}
               </div>
-
-              {/* Actions */}
-              <div
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                  paddingTop: '12px',
-                  borderTop: '1px solid var(--border-subtle)',
-                }}
-              >
-                <button
-                  onClick={() => onSelectProject(project)}
-                  style={{
-                    background: 'none',
-                    border: 'none',
-                    color: 'var(--text-main)',
-                    fontWeight: '600',
-                    fontSize: '0.85rem',
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '6px',
-                    cursor: 'pointer',
-                  }}
-                >
-                  <Eye size={15} />
-                  <span>Inspect View</span>
-                </button>
-
-                <div style={{ display: 'flex', gap: '8px' }}>
-                  {project.githubUrl && (
-                    <a
-                      href={project.githubUrl}
-                      target="_blank"
-                      rel="noreferrer"
-                      title="GitHub Repository"
-                      style={{
-                        color: 'var(--text-muted)',
-                        padding: '5px',
-                        borderRadius: '4px',
-                        background: 'var(--btn-secondary-bg)',
-                        display: 'inline-flex',
-                      }}
-                    >
-                      <GithubIcon size={15} />
-                    </a>
-                  )}
-                  {project.liveUrl && (
-                    <a
-                      href={project.liveUrl}
-                      target="_blank"
-                      rel="noreferrer"
-                      title="Live Site"
-                      style={{
-                        color: 'var(--text-main)',
-                        padding: '5px',
-                        borderRadius: '4px',
-                        background: 'var(--btn-secondary-bg)',
-                        display: 'inline-flex',
-                      }}
-                    >
-                      <ExternalLink size={15} />
-                    </a>
-                  )}
-                </div>
-              </div>
             </div>
           </div>
         ))}
+
+        {/* 6th Card: View All Projects (15+) */}
+        <div
+          onClick={onViewAllProjects}
+          className="clean-card"
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: '36px 24px',
+            borderRadius: '16px',
+            cursor: 'pointer',
+            textAlign: 'center',
+            minHeight: '380px',
+            border: '2px dashed var(--border-hover)',
+            background: 'var(--btn-secondary-bg)',
+            transition: 'all 0.2s ease',
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.transform = 'translateY(-4px)';
+            e.currentTarget.style.borderColor = 'var(--text-main)';
+            e.currentTarget.style.background = 'var(--bg-card-hover)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.transform = 'translateY(0)';
+            e.currentTarget.style.borderColor = 'var(--border-hover)';
+            e.currentTarget.style.background = 'var(--btn-secondary-bg)';
+          }}
+        >
+          <div
+            style={{
+              width: '56px',
+              height: '56px',
+              borderRadius: '50%',
+              background: 'var(--bg-card)',
+              border: '1px solid var(--border-subtle)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              color: 'var(--text-main)',
+              marginBottom: '16px',
+            }}
+          >
+            <Layers size={24} />
+          </div>
+
+          <h3 style={{ fontSize: '1.25rem', fontWeight: '800', color: 'var(--text-main)', marginBottom: '8px' }}>
+            View All Projects
+          </h3>
+          <p style={{ fontSize: '0.88rem', color: 'var(--text-muted)', marginBottom: '20px', maxWidth: '240px' }}>
+            Explore 15+ shipped applications, GovTech systems, and developer tools.
+          </p>
+
+          <div
+            className="btn btn-primary"
+            style={{
+              padding: '10px 20px',
+              fontSize: '0.85rem',
+              borderRadius: '9999px',
+            }}
+          >
+            <span>Browse Full Catalog</span>
+            <ArrowRight size={14} />
+          </div>
+        </div>
       </div>
     </section>
   );

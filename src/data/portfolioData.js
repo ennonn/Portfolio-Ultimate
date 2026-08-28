@@ -33,28 +33,30 @@ export const portfolioData = {
       category: "Full-Stack",
       shortDesc: "Laboratory attendance platform combining device cryptographic signatures, GPS geofencing, and PIN verification.",
       image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=1200&q=80",
+      videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4",
       tags: ["Next.js", "TypeScript", "PostgreSQL", "Prisma", "React Native", "Expo"],
       liveUrl: "https://example.com/labsign",
       githubUrl: "https://github.com/example/labsign",
       mobileUrl: "https://github.com/example/labsign-mobile",
       details: {
-        subtitle: "Laboratory Attendance Tracking System",
-        description: "UA LabSign is a centralized web and mobile laboratory attendance system designed to prevent proxy attendance. It combines device-bound ECDSA P-256 signatures, GPS geofencing, institutional Google authentication, and session PINs.",
+        subtitle: "Laboratory Attendance Tracking & Security System",
+        description: "UA LabSign is a centralized web and mobile laboratory attendance system designed to eliminate proxy attendance. It combines device-bound ECDSA P-256 signatures, GPS geofencing, institutional Google authentication, and single-use session PINs.",
         architecture: [
           { role: "Web Portal & Backend", text: "Built with Next.js App Router, React, and TypeScript. Prisma manages PostgreSQL models on Neon DB." },
-          { role: "Mobile Application", text: "React Native and Expo client using TypeScript, SecureStore, and native cryptographic APIs." },
-          { role: "Verification Gates", text: "5 gates: University Identity, Authorized Device, Valid Signature, Geofence, and PIN." }
+          { role: "Mobile Client", text: "React Native and Expo app utilizing TypeScript, SecureStore, and native cryptographic APIs." },
+          { role: "Verification Gates", text: "5 verification gates: University Identity, Authorized Device, Valid Signature, Geofence Radius, and PIN." }
         ],
-        context: { type: "University System", clients: "Web + Mobile", scope: "Laboratory Attendance" },
+        context: { type: "University Platform", clients: "Web + Mobile", scope: "Attendance Verification" },
         deployment: { web: "Vercel", database: "Neon PostgreSQL", mobile: "Expo / Android" }
       }
     },
     {
       id: "ac-core",
       title: "AC-CORE — City Center for Operational Reporting",
-      category: "Full-Stack",
-      shortDesc: "GovTech platform featuring Geospatial Signal Routing (GSR) to track municipal maintenance issues and report incidents.",
+      category: "GovTech",
+      shortDesc: "GovTech platform featuring Geospatial Signal Routing (GSR) to track municipal maintenance issues and route emergency reports.",
       image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1200&q=80",
+      videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4",
       tags: ["MEAN Stack", "Leaflet.js", "Express", "GeoJSON", "Turf.js"],
       liveUrl: "https://example.com/ac-core",
       githubUrl: "https://github.com/example/ac-core",
@@ -62,11 +64,11 @@ export const portfolioData = {
         subtitle: "Operational Reporting and Engineering System",
         description: "A proactive GovTech platform engineered for city governments to receive citizen reports, track infrastructure maintenance in real-time, and route emergency responders using spatial GIS data.",
         architecture: [
-          { role: "Geospatial Routing", text: "Integrates Leaflet.js with Turf.js algorithms for boundary analysis and location tagging." },
+          { role: "Geospatial Routing", text: "Integrates Leaflet.js with Turf.js algorithms for spatial boundary analysis and location tagging." },
           { role: "Backend API", text: "Express API endpoints managing incident logs and status updates." }
         ],
         context: { type: "GovTech System", clients: "Web Portal", scope: "Municipal Reporting" },
-        deployment: { web: "Vercel", database: "MongoDB Atlas", mobile: "Web App" }
+        deployment: { web: "Vercel", database: "MongoDB Atlas", mobile: "Responsive Web" }
       }
     },
     {
@@ -75,14 +77,15 @@ export const portfolioData = {
       category: "Web App",
       shortDesc: "Career management platform to score resumes against job descriptions, parse application history, and track interviews.",
       image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80",
+      videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4",
       tags: ["Laravel 11", "Livewire 3", "Neon Postgres", "Tailwind CSS"],
       liveUrl: "https://example.com/grit",
       githubUrl: "https://github.com/example/grit",
       details: {
         subtitle: "Job Application Tracking & Resume Matcher",
-        description: "Grit eliminates manual spreadsheet tracking by parsing job offers, extracting requirements, scoring candidate fit, and suggesting cover letters.",
+        description: "Grit eliminates manual spreadsheet tracking by parsing job offers, extracting key requirements, scoring candidate fit, and suggesting tailored cover letters.",
         architecture: [
-          { role: "Parsing Engine", text: "Structured output extraction for key resume requirements." },
+          { role: "Parsing Engine", text: "Structured output extraction for key resume requirements and job skills." },
           { role: "Frontend Engine", text: "Laravel Livewire 3 reactive interfaces with Tailwind UI components." }
         ],
         context: { type: "Web Application", clients: "Web App", scope: "Resume Analysis" },
@@ -92,9 +95,10 @@ export const portfolioData = {
     {
       id: "kodasync",
       title: "KodaSync — Searchable Code Snippet Hub",
-      category: "Full-Stack",
+      category: "Developer Tools",
       shortDesc: "Developer intelligence hub combining Monaco Editor with searchable neural code snippet storage.",
       image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1200&q=80",
+      videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4",
       tags: ["Next.js 15", "FastAPI", "pgvector", "Monaco Editor"],
       liveUrl: "https://example.com/kodasync",
       githubUrl: "https://github.com/example/kodasync",
@@ -111,10 +115,11 @@ export const portfolioData = {
     },
     {
       id: "subvantage",
-      title: "SubVantage — Financial & Subscription Dashboard",
+      title: "SubVantage — Subscription Dashboard",
       category: "Full-Stack",
       shortDesc: "Financial dashboard for tracking recurring software subscriptions, fortified with 2FA security and spending charts.",
       image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80",
+      videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4",
       tags: ["Next.js 15", "Neon Postgres", "Prisma", "2FA Security", "Recharts"],
       liveUrl: "https://example.com/subvantage",
       githubUrl: "https://github.com/example/subvantage",
@@ -135,6 +140,7 @@ export const portfolioData = {
       category: "Frontend",
       shortDesc: "Inventory and sales management system featuring real-time stock tracking and printable POS receipts.",
       image: "https://images.unsplash.com/photo-1556742049-0a67daf40955?auto=format&fit=crop&w=1200&q=80",
+      videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4",
       tags: ["TypeScript", "MERN Stack", "Tailwind CSS"],
       liveUrl: "https://example.com/mamars",
       githubUrl: "https://github.com/example/mamars",
@@ -147,6 +153,46 @@ export const portfolioData = {
         ],
         context: { type: "Retail POS", clients: "Web Desktop", scope: "Inventory & POS" },
         deployment: { web: "Netlify", database: "MongoDB Atlas", mobile: "Tablet & Desktop" }
+      }
+    },
+    {
+      id: "cloud-gate",
+      title: "CloudGate — API Access & Key Manager",
+      category: "Developer Tools",
+      shortDesc: "Developer API gateway service managing key generation, rate limiting, and analytics headers.",
+      image: "https://images.unsplash.com/photo-1618401471353-b98afee0b2eb?auto=format&fit=crop&w=1200&q=80",
+      videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4",
+      tags: ["Go", "Redis", "Docker", "PostgreSQL"],
+      liveUrl: "https://example.com/cloudgate",
+      githubUrl: "https://github.com/example/cloudgate",
+      details: {
+        subtitle: "API Rate Limiting & Gateway Dashboard",
+        description: "CloudGate secures microservices with token bucket rate limiting, Redis caching, and real-time developer API usage analytics.",
+        architecture: [
+          { role: "Gateway proxy", text: "High throughput Go proxy with Redis token bucket rate limiting." }
+        ],
+        context: { type: "API Gateway", clients: "Developer API", scope: "Security & Analytics" },
+        deployment: { web: "Fly.io", database: "Redis + Postgres", mobile: "Web Dashboard" }
+      }
+    },
+    {
+      id: "nexus-chat",
+      title: "Nexus — Realtime Collaborative Workspace",
+      category: "Web App",
+      shortDesc: "Team collaboration suite featuring Markdown document sync, presence indicators, and WebRTC video.",
+      image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80",
+      videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4",
+      tags: ["React", "WebSockets", "Node.js", "Tailwind CSS"],
+      liveUrl: "https://example.com/nexus",
+      githubUrl: "https://github.com/example/nexus",
+      details: {
+        subtitle: "Realtime Collaboration Platform",
+        description: "Nexus connects remote development teams with shared document channels, live cursor synchronization, and video rooms.",
+        architecture: [
+          { role: "Realtime Engine", text: "Socket.io websockets cluster supporting document CRDTs." }
+        ],
+        context: { type: "Collaboration Tool", clients: "Web Suite", scope: "Document Sync" },
+        deployment: { web: "Vercel", database: "Postgres", mobile: "Responsive Web" }
       }
     }
   ],

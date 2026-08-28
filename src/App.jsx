@@ -10,11 +10,13 @@ import Certifications from './components/Certifications';
 import ContactTrigger from './components/ContactTrigger';
 import ChatBotBubble from './components/ChatBotBubble';
 import ProjectDetailView from './components/ProjectDetailView';
+import AllProjectsView from './components/AllProjectsView';
 import { portfolioData } from './data/portfolioData';
 
 export default function App() {
   const [theme, setTheme] = useState('light');
-  const [activeProjectId, setActiveProjectId] = useState(null);
+  const [viewMode, setViewMode] = useState('main'); // 'main' | 'all-projects' | 'project-detail'
+  const [selectedProjectId, setSelectedProjectId] = useState(null);
 
   // Force window to scroll to top on page refresh and set light mode
   useEffect(() => {
@@ -32,36 +34,54 @@ export default function App() {
   };
 
   const handleSelectProject = (projectId) => {
-    setActiveProjectId(projectId);
+    setSelectedProjectId(projectId);
+    setViewMode('project-detail');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const handleBackToProjects = () => {
-    setActiveProjectId(null);
+  const handleOpenAllProjects = () => {
+    setViewMode('all-projects');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const selectedProject = portfolioData.projects.find((p) => p.id === activeProjectId);
+  const handleBackToMain = () => {
+    setViewMode('main');
+    setSelectedProjectId(null);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const selectedProject = portfolioData.projects.find((p) => p.id === selectedProjectId);
 
   return (
     <div style={{ minHeight: '100vh', background: 'var(--bg-dark)' }}>
       <Navbar
         theme={theme}
         onToggleTheme={toggleTheme}
-        onGoHome={handleBackToProjects}
+        onGoHome={handleBackToMain}
       />
 
-      {activeProjectId && selectedProject ? (
-        <main style={{ paddingTop: '100px', minHeight: '80vh' }}>
+      {viewMode === 'project-detail' && selectedProject ? (
+        <main>
           <ProjectDetailView
             project={selectedProject}
-            onBack={handleBackToProjects}
+            onBack={handleBackToMain}
+          />
+        </main>
+      ) : viewMode === 'all-projects' ? (
+        <main>
+          <AllProjectsView
+            onBack={handleBackToMain}
+            onSelectProject={handleSelectProject}
           />
         </main>
       ) : (
         <main>
           <Hero />
           <AboutStats />
-          <Projects onSelectProject={handleSelectProject} />
+          <Projects
+            onSelectProject={handleSelectProject}
+            onViewAllProjects={handleOpenAllProjects}
+          />
           <Experience />
           <TechStack />
           <Certifications />
