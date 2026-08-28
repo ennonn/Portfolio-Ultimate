@@ -29,27 +29,29 @@ export default function Navbar({ theme, onToggleTheme, onGoHome }) {
   };
 
   return (
-    <nav
+    <header
       style={{
         position: 'fixed',
-        top: 0,
+        top: '16px',
         left: 0,
         right: 0,
         zIndex: 1000,
-        padding: '16px clamp(16px, 3vw, 36px)',
-        background: scrolled ? 'var(--bg-card)' : 'transparent',
-        backdropFilter: scrolled ? 'blur(12px)' : 'none',
-        borderBottom: scrolled ? '1px solid var(--border-subtle)' : '1px solid transparent',
-        transition: 'all 0.2s ease',
+        padding: '0 clamp(16px, 3vw, 36px)',
       }}
     >
-      <div
+      <nav
         style={{
           maxWidth: '1280px',
           margin: '0 auto',
+          padding: '10px 24px',
+          borderRadius: '9999px',
+          background: 'var(--bg-card)',
+          border: '1px solid var(--border-subtle)',
+          boxShadow: scrolled ? '0 10px 30px rgba(0,0,0,0.1)' : 'var(--shadow-card)',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
+          transition: 'all 0.2s ease',
         }}
       >
         {/* Brand Name */}
@@ -57,8 +59,8 @@ export default function Navbar({ theme, onToggleTheme, onGoHome }) {
           href="#"
           onClick={handleLinkClick}
           style={{
-            fontSize: '1.1rem',
-            fontWeight: '700',
+            fontSize: '1.05rem',
+            fontWeight: '800',
             color: 'var(--text-main)',
             textDecoration: 'none',
           }}
@@ -95,7 +97,7 @@ export default function Navbar({ theme, onToggleTheme, onGoHome }) {
           ))}
         </div>
 
-        {/* Controls */}
+        {/* Action Controls: Theme Toggle & Resume Button */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
           <button
             onClick={onToggleTheme}
@@ -103,7 +105,7 @@ export default function Navbar({ theme, onToggleTheme, onGoHome }) {
             style={{
               width: '36px',
               height: '36px',
-              borderRadius: '8px',
+              borderRadius: '9999px',
               background: 'var(--btn-secondary-bg)',
               border: '1px solid var(--border-subtle)',
               color: 'var(--text-main)',
@@ -114,7 +116,7 @@ export default function Navbar({ theme, onToggleTheme, onGoHome }) {
               transition: 'all 0.15s ease',
             }}
           >
-            {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
+            {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
           </button>
 
           <a
@@ -123,7 +125,7 @@ export default function Navbar({ theme, onToggleTheme, onGoHome }) {
             style={{
               padding: '6px 14px',
               fontSize: '0.82rem',
-              borderRadius: '6px',
+              borderRadius: '9999px',
             }}
           >
             <FileText size={14} />
@@ -144,7 +146,7 @@ export default function Navbar({ theme, onToggleTheme, onGoHome }) {
             {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
-      </div>
+      </nav>
 
       <style>{`
         @media (max-width: 800px) {
@@ -152,6 +154,6 @@ export default function Navbar({ theme, onToggleTheme, onGoHome }) {
           .mobile-toggle { display: block !important; }
         }
       `}</style>
-    </nav>
+    </header>
   );
 }

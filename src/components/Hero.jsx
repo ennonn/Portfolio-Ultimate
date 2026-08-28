@@ -8,11 +8,11 @@ export default function Hero() {
 
   const getSocialIcon = (name) => {
     switch (name.toLowerCase()) {
-      case 'github': return <GithubIcon size={18} />;
-      case 'linkedin': return <LinkedinIcon size={18} />;
-      case 'email': return <Mail size={18} />;
-      case 'tiktok': return <Video size={18} />;
-      default: return <Globe size={18} />;
+      case 'github': return <GithubIcon size={16} />;
+      case 'linkedin': return <LinkedinIcon size={16} />;
+      case 'email': return <Mail size={16} />;
+      case 'tiktok': return <Video size={16} />;
+      default: return <Globe size={16} />;
     }
   };
 
@@ -20,13 +20,13 @@ export default function Hero() {
     <section
       id="hero"
       style={{
-        paddingTop: '140px',
-        paddingBottom: '80px',
+        paddingTop: '130px',
+        paddingBottom: '60px',
         maxWidth: '1280px',
         margin: '0 auto',
         paddingLeft: 'clamp(16px, 3vw, 36px)',
         paddingRight: 'clamp(16px, 3vw, 36px)',
-        minHeight: '85vh',
+        minHeight: '82vh',
         display: 'flex',
         alignItems: 'center',
       }}
@@ -34,8 +34,8 @@ export default function Hero() {
       <div
         style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-          gap: '56px',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))',
+          gap: '48px',
           alignItems: 'center',
           width: '100%',
         }}
@@ -61,12 +61,12 @@ export default function Hero() {
             AVAILABLE FOR ROLES & FREELANCE
           </div>
 
-          {/* Name & Role */}
+          {/* Main Name & Title */}
           <h1
             style={{
-              fontSize: 'clamp(2.8rem, 5vw, 4rem)',
+              fontSize: 'clamp(3rem, 5.5vw, 4.4rem)',
               fontWeight: '800',
-              lineHeight: 1.1,
+              lineHeight: 1.05,
               marginBottom: '10px',
               color: 'var(--text-main)',
               letterSpacing: '-0.03em',
@@ -77,7 +77,7 @@ export default function Hero() {
 
           <h2
             style={{
-              fontSize: '1.35rem',
+              fontSize: '1.4rem',
               fontWeight: '600',
               color: 'var(--text-muted)',
               marginBottom: '20px',
@@ -91,14 +91,14 @@ export default function Hero() {
               fontSize: '1.05rem',
               color: 'var(--text-muted)',
               marginBottom: '32px',
-              maxWidth: '540px',
+              maxWidth: '520px',
               lineHeight: 1.6,
             }}
           >
             {personal.bio}
           </p>
 
-          {/* Rectangular Action Buttons */}
+          {/* Action Buttons */}
           <div
             style={{
               display: 'flex',
@@ -107,12 +107,28 @@ export default function Hero() {
               marginBottom: '36px',
             }}
           >
-            <a href="#projects" className="btn btn-primary" style={{ padding: '12px 24px' }}>
+            <a
+              href="#projects"
+              className="btn btn-primary"
+              style={{
+                padding: '12px 26px',
+                borderRadius: '9999px',
+                fontSize: '0.92rem',
+              }}
+            >
               <span>View Projects</span>
               <ArrowRight size={16} />
             </a>
 
-            <a href="#contact" className="btn btn-secondary" style={{ padding: '12px 24px' }}>
+            <a
+              href="#contact"
+              className="btn btn-secondary"
+              style={{
+                padding: '12px 26px',
+                borderRadius: '9999px',
+                fontSize: '0.92rem',
+              }}
+            >
               <Mail size={16} />
               <span>Contact Me</span>
             </a>
@@ -137,8 +153,8 @@ export default function Hero() {
                 rel="noreferrer"
                 title={social.name}
                 style={{
-                  width: '40px',
-                  height: '40px',
+                  width: '38px',
+                  height: '38px',
                   borderRadius: '8px',
                   background: 'var(--bg-card)',
                   border: '1px solid var(--border-subtle)',
@@ -164,22 +180,22 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Right Column: Clean Profile Image Box */}
+        {/* Right Column: Profile Image Box */}
         <div style={{ display: 'flex', justifyContent: 'center' }}>
           <div
             className="clean-card"
             style={{
               width: '100%',
-              maxWidth: '460px',
+              maxWidth: '480px',
               padding: '14px',
-              borderRadius: '18px',
+              borderRadius: '20px',
             }}
           >
             <div
               style={{
                 width: '100%',
-                height: '380px',
-                borderRadius: '12px',
+                height: '400px',
+                borderRadius: '14px',
                 overflow: 'hidden',
               }}
             >

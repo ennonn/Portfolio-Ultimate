@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
 :root {
   --bg-dark: #09090b;
@@ -17,34 +17,38 @@
   --btn-primary-text: #09090b;
   --btn-secondary-bg: rgba(255, 255, 255, 0.05);
   
+  --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.3);
+  
   --font-main: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   
   --radius-sm: 6px;
-  --radius-md: 10px;
-  --radius-lg: 14px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
   --radius-pill: 9999px;
   
   --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
   --transition-normal: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Light Mode Overrides */
+/* Light Mode Overrides matching mockup edited_page-0001.jpg */
 [data-theme="light"] {
-  --bg-dark: #fafafa;
-  --bg-surface: #f4f4f5;
+  --bg-dark: #f8f9fa;
+  --bg-surface: #f1f3f5;
   --bg-card: #ffffff;
-  --bg-card-hover: #f4f4f5;
+  --bg-card-hover: #f8f9fa;
   
-  --border-subtle: #e4e4e7;
-  --border-hover: #d4d4d8;
+  --border-subtle: #e9ecef;
+  --border-hover: #dee2e6;
   
   --text-main: #09090b;
-  --text-muted: #52525b;
-  --text-subtle: #71717a;
+  --text-muted: #495057;
+  --text-subtle: #868e96;
   
   --btn-primary-bg: #09090b;
   --btn-primary-text: #ffffff;
-  --btn-secondary-bg: rgba(0, 0, 0, 0.04);
+  --btn-secondary-bg: #f1f3f5;
+  
+  --shadow-card: 0 8px 24px rgba(0, 0, 0, 0.04);
 }
 
 * {
@@ -85,6 +89,7 @@ p {
   background: var(--bg-card);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
   transition: all var(--transition-fast);
 }
 
@@ -93,41 +98,41 @@ p {
   background: var(--bg-card-hover);
 }
 
-/* Expanded Section Container - Wider Content Layout */
+/* Section Container - Wide & Centered Layout */
 .section-container {
-  max-width: 1280px;
+  max-width: 1320px;
   margin: 0 auto;
-  padding: 70px clamp(16px, 3vw, 36px);
+  padding: 80px clamp(20px, 4vw, 48px);
 }
 
 .section-header {
-  margin-bottom: 36px;
+  margin-bottom: 40px;
   text-align: left;
 }
 
 .section-header .tag {
   display: inline-block;
-  padding: 4px 10px;
+  padding: 4px 12px;
   border-radius: var(--radius-sm);
   background: var(--btn-secondary-bg);
   border: 1px solid var(--border-subtle);
-  color: var(--text-muted);
+  color: var(--text-subtle);
   font-size: 0.78rem;
-  font-weight: 600;
+  font-weight: 700;
   margin-bottom: 12px;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.08em;
 }
 
 .section-header h2 {
-  font-size: 2.1rem;
-  font-weight: 700;
+  font-size: 2.2rem;
+  font-weight: 800;
   margin-bottom: 8px;
 }
 
 .section-header p {
-  font-size: 1rem;
-  max-width: 680px;
+  font-size: 1.05rem;
+  max-width: 700px;
 }
 
 /* Buttons */
@@ -136,9 +141,9 @@ p {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 10px 20px;
+  padding: 10px 22px;
   border-radius: var(--radius-md);
-  font-weight: 500;
+  font-weight: 600;
   font-size: 0.9rem;
   cursor: pointer;
   transition: all var(--transition-fast);
@@ -153,6 +158,7 @@ p {
 
 .btn-primary:hover {
   opacity: 0.9;
+  transform: translateY(-1px);
 }
 
 .btn-secondary {
@@ -164,17 +170,18 @@ p {
 .btn-secondary:hover {
   background: var(--bg-card-hover);
   border-color: var(--border-hover);
+  transform: translateY(-1px);
 }
 
 /* Badges / Tech Pills */
 .pill-badge {
   display: inline-flex;
   align-items: center;
-  padding: 3px 8px;
+  padding: 4px 10px;
   border-radius: var(--radius-sm);
   background: var(--btn-secondary-bg);
   border: 1px solid var(--border-subtle);
-  font-size: 0.75rem;
+  font-size: 0.78rem;
   font-weight: 500;
   color: var(--text-muted);
 }
@@ -195,9 +202,9 @@ p {
 
 @media (max-width: 768px) {
   .section-container {
-    padding: 40px 16px;
+    padding: 48px 16px;
   }
   .section-header h2 {
-    font-size: 1.6rem;
+    font-size: 1.7rem;
   }
 }
