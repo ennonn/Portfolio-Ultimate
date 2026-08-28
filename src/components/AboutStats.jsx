@@ -26,7 +26,7 @@ export default function AboutStats() {
     };
   }, []);
 
-  // Overview animation is strictly chained: triggers 4.1s after quotes start (right after Quote 2 morph finishes!)
+  // Overview animation triggers 4.1s after quotes start (right after Quote 2 morph finishes)
   useEffect(() => {
     if (isQuotesVisible) {
       const timer = setTimeout(() => {
@@ -90,7 +90,7 @@ export default function AboutStats() {
         </div>
       </div>
 
-      {/* Overview Section (Strictly stays hidden until Quote 2 completes!) */}
+      {/* Overview Section */}
       <div>
         <div
           className={`section-header ${isOverviewVisible ? 'overview-text-active' : 'overview-text-hidden'}`}
@@ -102,7 +102,7 @@ export default function AboutStats() {
           <p>{mission.subtitle}</p>
         </div>
 
-        {/* 3 Stat Cards Row Flowing from Below with Staggered Delays */}
+        {/* 3 Stat Cards Row Flowing from Below with Delays AFTER Overview Header Completes */}
         <div
           style={{
             display: 'grid',
@@ -121,7 +121,7 @@ export default function AboutStats() {
                 alignItems: 'center',
                 justifyContent: 'space-between',
                 gap: '16px',
-                animationDelay: `${0.2 + idx * 0.2}s`,
+                animationDelay: `${1.0 + idx * 0.35}s`,
               }}
             >
               <div>
