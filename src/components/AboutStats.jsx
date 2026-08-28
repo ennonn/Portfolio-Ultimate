@@ -5,20 +5,31 @@ export default function AboutStats() {
   const { mission } = portfolioData;
 
   return (
-    <section id="about" className="section-container" style={{ paddingTop: '60px', paddingBottom: '80px' }}>
+    <section
+      id="about"
+      className="section-container"
+      style={{
+        paddingTop: '120px',
+        paddingBottom: '100px',
+        minHeight: '100vh',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+      }}
+    >
       {/* Quote Banner Section */}
       <div
         style={{
           display: 'flex',
           flexDirection: 'column',
-          gap: '32px',
-          marginBottom: '80px',
+          gap: '40px',
+          marginBottom: '90px',
         }}
       >
-        <div style={{ maxWidth: '640px' }}>
+        <div style={{ maxWidth: '720px' }}>
           <p
             style={{
-              fontSize: 'clamp(1.4rem, 3vw, 2.1rem)',
+              fontSize: 'clamp(1.6rem, 3.5vw, 2.4rem)',
               fontWeight: '700',
               lineHeight: 1.3,
               color: 'var(--text-main)',
@@ -29,10 +40,10 @@ export default function AboutStats() {
           </p>
         </div>
 
-        <div style={{ maxWidth: '640px', alignSelf: 'flex-end', textAlign: 'right' }}>
+        <div style={{ maxWidth: '720px', alignSelf: 'flex-end', textAlign: 'right' }}>
           <p
             style={{
-              fontSize: 'clamp(1.4rem, 3vw, 2.1rem)',
+              fontSize: 'clamp(1.6rem, 3.5vw, 2.4rem)',
               fontWeight: '700',
               lineHeight: 1.3,
               color: 'var(--text-muted)',
@@ -67,7 +78,7 @@ export default function AboutStats() {
             className="clean-card"
             style={{
               padding: '24px 28px',
-              borderRadius: '12px',
+              borderRadius: '14px',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'space-between',
@@ -77,7 +88,7 @@ export default function AboutStats() {
             <div>
               <p
                 style={{
-                  fontSize: '0.75rem',
+                  fontSize: '0.78rem',
                   color: 'var(--text-subtle)',
                   textTransform: 'uppercase',
                   letterSpacing: '0.08em',
@@ -87,7 +98,7 @@ export default function AboutStats() {
               >
                 {stat.label}
               </p>
-              <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', lineHeight: 1.4 }}>
+              <p style={{ fontSize: '0.88rem', color: 'var(--text-muted)', lineHeight: 1.4 }}>
                 {stat.detail}
               </p>
             </div>
@@ -95,7 +106,7 @@ export default function AboutStats() {
             <div style={{ textAlign: 'right', flexShrink: 0 }}>
               <span
                 style={{
-                  fontSize: '1.65rem',
+                  fontSize: '1.7rem',
                   fontWeight: '800',
                   color: 'var(--text-main)',
                   letterSpacing: '-0.02em',

@@ -8,7 +8,7 @@ export default function Navbar({ theme, onToggleTheme, onGoHome }) {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 30);
+      setScrolled(window.scrollY > 40);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -32,26 +32,29 @@ export default function Navbar({ theme, onToggleTheme, onGoHome }) {
     <header
       style={{
         position: 'fixed',
-        top: '16px',
+        top: scrolled ? '16px' : '0px',
         left: 0,
         right: 0,
         zIndex: 1000,
-        padding: '0 clamp(16px, 3vw, 36px)',
+        padding: scrolled ? '0 clamp(16px, 3vw, 36px)' : '0',
+        transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
       }}
     >
       <nav
         style={{
-          maxWidth: '1280px',
+          maxWidth: scrolled ? '1280px' : '100%',
           margin: '0 auto',
-          padding: '10px 24px',
-          borderRadius: '9999px',
-          background: 'var(--bg-card)',
-          border: '1px solid var(--border-subtle)',
-          boxShadow: scrolled ? '0 10px 30px rgba(0,0,0,0.1)' : 'var(--shadow-card)',
+          padding: scrolled ? '10px 28px' : '20px clamp(20px, 4vw, 48px)',
+          borderRadius: scrolled ? '9999px' : '0px',
+          background: scrolled ? 'var(--bg-card)' : 'transparent',
+          border: scrolled ? '1px solid var(--border-subtle)' : '1px solid transparent',
+          borderBottom: !scrolled ? '1px solid transparent' : '1px solid var(--border-subtle)',
+          backdropFilter: scrolled ? 'blur(16px)' : 'none',
+          boxShadow: scrolled ? '0 10px 30px rgba(0,0,0,0.1)' : 'none',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
-          transition: 'all 0.2s ease',
+          transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
         }}
       >
         {/* Brand Name */}
@@ -59,7 +62,7 @@ export default function Navbar({ theme, onToggleTheme, onGoHome }) {
           href="#"
           onClick={handleLinkClick}
           style={{
-            fontSize: '1.05rem',
+            fontSize: '1.15rem',
             fontWeight: '800',
             color: 'var(--text-main)',
             textDecoration: 'none',
@@ -74,7 +77,7 @@ export default function Navbar({ theme, onToggleTheme, onGoHome }) {
           style={{
             display: 'flex',
             alignItems: 'center',
-            gap: '24px',
+            gap: '28px',
           }}
         >
           {navLinks.map((link) => (
@@ -85,7 +88,7 @@ export default function Navbar({ theme, onToggleTheme, onGoHome }) {
               style={{
                 color: 'var(--text-muted)',
                 textDecoration: 'none',
-                fontSize: '0.88rem',
+                fontSize: '0.9rem',
                 fontWeight: '500',
                 transition: 'color 0.15s ease',
               }}
@@ -103,8 +106,8 @@ export default function Navbar({ theme, onToggleTheme, onGoHome }) {
             onClick={onToggleTheme}
             title={theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
             style={{
-              width: '36px',
-              height: '36px',
+              width: '38px',
+              height: '38px',
               borderRadius: '9999px',
               background: 'var(--btn-secondary-bg)',
               border: '1px solid var(--border-subtle)',
@@ -116,15 +119,15 @@ export default function Navbar({ theme, onToggleTheme, onGoHome }) {
               transition: 'all 0.15s ease',
             }}
           >
-            {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
+            {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
           </button>
 
           <a
             href={portfolioData.personal.resumeUrl}
             className="btn btn-secondary"
             style={{
-              padding: '6px 14px',
-              fontSize: '0.82rem',
+              padding: '7px 16px',
+              fontSize: '0.85rem',
               borderRadius: '9999px',
             }}
           >
@@ -143,7 +146,7 @@ export default function Navbar({ theme, onToggleTheme, onGoHome }) {
               display: 'none',
             }}
           >
-            {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
+            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
       </nav>
