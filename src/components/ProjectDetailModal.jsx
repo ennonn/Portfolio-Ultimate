@@ -168,19 +168,17 @@ export default function ProjectDetailModal({ project, onClose }) {
             ))}
           </div>
 
-          {/* 3. PROMINENT VIDEO DEMO FRAME (object-fit: contain to prevent stretching) */}
+          {/* 3. PROMINENT VIDEO DEMO FRAME */}
           <div
             style={{
               width: '100%',
+              height: '380px',
               borderRadius: '18px',
               overflow: 'hidden',
               border: '1px solid var(--border-subtle)',
               background: '#09090b',
               boxShadow: '0 8px 30px rgba(0,0,0,0.2)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              maxHeight: '480px',
+              position: 'relative',
             }}
           >
             <video
@@ -193,8 +191,8 @@ export default function ProjectDetailModal({ project, onClose }) {
               poster={project.image}
               style={{
                 width: '100%',
-                maxHeight: '480px',
-                objectFit: 'contain', // Preserves exact desktop video proportions with zero stretching!
+                height: '100%',
+                objectFit: 'cover',
                 display: 'block',
               }}
             />
