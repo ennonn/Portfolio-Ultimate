@@ -17,14 +17,16 @@ export default function ProjectDetailModal({ project, onClose }) {
     };
   }, [onClose]);
 
-  // Programmatically trigger video autoplay on modal open
   useEffect(() => {
     if (videoRef.current) {
       videoRef.current.defaultMuted = true;
       videoRef.current.muted = true;
-      videoRef.current.play().catch((err) => {
-        console.log('Autoplay handler:', err);
-      });
+      const playPromise = videoRef.current.play();
+      if (playPromise !== undefined) {
+        playPromise.catch((err) => {
+          console.log('Autoplay handled:', err);
+        });
+      }
     }
   }, [project]);
 
@@ -168,19 +170,25 @@ export default function ProjectDetailModal({ project, onClose }) {
             ))}
           </div>
 
-          {/* 3. DESKTOP SCALE LOOPING GIF VIDEO FRAME (NO ROUNDED CORNERS - FLAT EDGES) */}
+          {/* 3. CLEAN VIDEO DEMO PLAYER */}
           <div
             style={{
               width: '100%',
-              borderRadius: '0px',
+              minHeight: '300px',
+              borderRadius: '12px',
               overflow: 'hidden',
               border: '1px solid var(--border-subtle)',
-              background: '#09090b',
+              background: '#000000',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
             }}
           >
             <video
+              key={project.videoUrl}
               ref={videoRef}
               src={project.videoUrl}
+              controls
               autoPlay
               loop
               muted
@@ -188,11 +196,15 @@ export default function ProjectDetailModal({ project, onClose }) {
               poster={project.image}
               style={{
                 width: '100%',
-                height: 'auto',
-                borderRadius: '0px',
+                maxHeight: '480px',
+                objectFit: 'contain',
                 display: 'block',
+                background: '#000000',
               }}
-            />
+            >
+              <source src={project.videoUrl} type="video/mp4" />
+              Your browser does not support HTML5 video playback.
+            </video>
           </div>
 
           {/* 4. Action Links Bar */}
