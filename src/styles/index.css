@@ -166,6 +166,53 @@ p {
   text-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
 }
 
+/* Overview Section Animations: Slide in from Left & Stat Cards Flow from Below */
+@keyframes slideInFromLeft {
+  0% {
+    opacity: 0;
+    filter: blur(10px);
+    transform: translateX(-48px);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0px);
+    transform: translateX(0);
+  }
+}
+
+.overview-text-hidden {
+  opacity: 0 !important;
+  transform: translateX(-48px) !important;
+}
+
+.overview-text-active {
+  animation: slideInFromLeft 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: opacity, transform, filter;
+}
+
+@keyframes flowUpFromBelow {
+  0% {
+    opacity: 0;
+    filter: blur(10px);
+    transform: translateY(36px) scale(0.96);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0px);
+    transform: translateY(0) scale(1);
+  }
+}
+
+.stat-card-hidden {
+  opacity: 0 !important;
+  transform: translateY(36px) scale(0.96) !important;
+}
+
+.stat-card-active {
+  animation: flowUpFromBelow 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: opacity, transform, filter;
+}
+
 /* Minimalist Clean Cards */
 .clean-card {
   background: var(--bg-card);
