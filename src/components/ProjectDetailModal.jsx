@@ -17,6 +17,7 @@ export default function ProjectDetailModal({ project, onClose }) {
     };
   }, [onClose]);
 
+  // Programmatically trigger video autoplay on modal open
   useEffect(() => {
     if (videoRef.current) {
       videoRef.current.defaultMuted = true;
@@ -170,39 +171,31 @@ export default function ProjectDetailModal({ project, onClose }) {
             ))}
           </div>
 
-          {/* 3. PROMINENT VIDEO DEMO FRAME (With Controls & Guaranteed Height) */}
+          {/* 3. DESKTOP SCALE LOOPING GIF FRAME (No Player Controls, Natural Desktop Width & Height) */}
           <div
             style={{
               width: '100%',
-              minHeight: '380px',
               borderRadius: '18px',
               overflow: 'hidden',
               border: '1px solid var(--border-subtle)',
-              background: '#000000',
+              background: '#09090b',
               boxShadow: '0 8px 30px rgba(0,0,0,0.2)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
+              pointerEvents: 'none',
+              userSelect: 'none',
             }}
           >
             <video
               ref={videoRef}
               src={project.videoUrl}
-              controls
               autoPlay
               loop
               muted
               playsInline
-              onCanPlay={(e) => {
-                e.target.muted = true;
-                e.target.play().catch(() => {});
-              }}
+              poster={project.image}
               style={{
                 width: '100%',
-                maxHeight: '460px',
-                objectFit: 'contain',
+                height: 'auto', // Full natural desktop scale!
                 display: 'block',
-                background: '#000000',
               }}
             />
           </div>
