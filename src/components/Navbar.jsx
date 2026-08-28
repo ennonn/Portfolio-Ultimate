@@ -36,7 +36,7 @@ export default function Navbar({ theme, onToggleTheme, onGoHome }) {
         left: 0,
         right: 0,
         zIndex: 1000,
-        padding: '16px 24px',
+        padding: '16px clamp(16px, 3vw, 36px)',
         background: scrolled ? 'var(--bg-card)' : 'transparent',
         backdropFilter: scrolled ? 'blur(12px)' : 'none',
         borderBottom: scrolled ? '1px solid var(--border-subtle)' : '1px solid transparent',
@@ -45,7 +45,7 @@ export default function Navbar({ theme, onToggleTheme, onGoHome }) {
     >
       <div
         style={{
-          maxWidth: '1040px',
+          maxWidth: '1280px',
           margin: '0 auto',
           display: 'flex',
           alignItems: 'center',
@@ -95,7 +95,7 @@ export default function Navbar({ theme, onToggleTheme, onGoHome }) {
           ))}
         </div>
 
-        {/* Action Controls: Theme Toggle & Resume Button */}
+        {/* Controls */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
           <button
             onClick={onToggleTheme}

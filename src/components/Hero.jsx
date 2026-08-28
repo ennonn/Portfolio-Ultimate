@@ -20,19 +20,19 @@ export default function Hero() {
     <section
       id="hero"
       style={{
-        paddingTop: '140px',
-        paddingBottom: '60px',
-        maxWidth: '1040px',
+        paddingTop: '130px',
+        paddingBottom: '50px',
+        maxWidth: '1280px',
         margin: '0 auto',
-        paddingLeft: '24px',
-        paddingRight: '24px',
+        paddingLeft: 'clamp(16px, 3vw, 36px)',
+        paddingRight: 'clamp(16px, 3vw, 36px)',
       }}
     >
       <div
         style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-          gap: '40px',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+          gap: '48px',
           alignItems: 'center',
         }}
       >
@@ -58,7 +58,7 @@ export default function Hero() {
 
           <h1
             style={{
-              fontSize: 'clamp(2.4rem, 4.5vw, 3.4rem)',
+              fontSize: 'clamp(2.4rem, 4.5vw, 3.6rem)',
               fontWeight: '800',
               lineHeight: 1.15,
               marginBottom: '12px',
@@ -70,7 +70,7 @@ export default function Hero() {
 
           <h2
             style={{
-              fontSize: '1.25rem',
+              fontSize: '1.35rem',
               fontWeight: '600',
               color: 'var(--text-muted)',
               marginBottom: '20px',
@@ -81,10 +81,10 @@ export default function Hero() {
 
           <p
             style={{
-              fontSize: '1rem',
+              fontSize: '1.05rem',
               color: 'var(--text-muted)',
               marginBottom: '28px',
-              maxWidth: '500px',
+              maxWidth: '580px',
               lineHeight: 1.6,
             }}
           >
@@ -154,7 +154,7 @@ export default function Hero() {
             className="clean-card"
             style={{
               width: '100%',
-              maxWidth: '380px',
+              maxWidth: '440px',
               padding: '12px',
               borderRadius: '16px',
             }}
@@ -162,7 +162,7 @@ export default function Hero() {
             <div
               style={{
                 width: '100%',
-                height: '320px',
+                height: '350px',
                 borderRadius: '10px',
                 overflow: 'hidden',
               }}

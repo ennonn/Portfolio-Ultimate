@@ -93,15 +93,15 @@ p {
   background: var(--bg-card-hover);
 }
 
-/* Section Container */
+/* Expanded Section Container - Wider Content Layout */
 .section-container {
-  max-width: 1040px;
+  max-width: 1280px;
   margin: 0 auto;
-  padding: 80px 24px;
+  padding: 70px clamp(16px, 3vw, 36px);
 }
 
 .section-header {
-  margin-bottom: 40px;
+  margin-bottom: 36px;
   text-align: left;
 }
 
@@ -120,14 +120,14 @@ p {
 }
 
 .section-header h2 {
-  font-size: 2rem;
+  font-size: 2.1rem;
   font-weight: 700;
   margin-bottom: 8px;
 }
 
 .section-header p {
   font-size: 1rem;
-  max-width: 600px;
+  max-width: 680px;
 }
 
 /* Buttons */
@@ -195,7 +195,7 @@ p {
 
 @media (max-width: 768px) {
   .section-container {
-    padding: 50px 16px;
+    padding: 40px 16px;
   }
   .section-header h2 {
     font-size: 1.6rem;
