@@ -171,17 +171,17 @@ export default function ProjectDetailModal({ project, onClose }) {
             ))}
           </div>
 
-          {/* 3. FULL DESKTOP SCREEN SHOWCASE (objectFit: contain, 0% cropping at top/bottom, sharp rectangle edges) */}
+          {/* 3. CENTERED DESKTOP FRAME WITH GENEROUS LEFT/RIGHT MARGINS (MATCHING USER SCREENSHOT) */}
           <div
             style={{
-              width: '100%',
+              maxWidth: '700px',
+              width: '85%',
+              margin: '0 auto',
               borderRadius: '0px',
               overflow: 'hidden',
               border: '1px solid var(--border-subtle)',
               background: '#09090b',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
+              boxShadow: '0 8px 24px rgba(0,0,0,0.08)',
             }}
           >
             <video
@@ -196,8 +196,6 @@ export default function ProjectDetailModal({ project, onClose }) {
               style={{
                 width: '100%',
                 height: 'auto',
-                maxHeight: '520px',
-                objectFit: 'contain', // 100% full desktop app interface - ZERO CROPPING at top or bottom!
                 borderRadius: '0px',
                 display: 'block',
               }}
