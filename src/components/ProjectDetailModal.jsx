@@ -171,17 +171,17 @@ export default function ProjectDetailModal({ project, onClose }) {
             ))}
           </div>
 
-          {/* 3. DESKTOP SCALE FRAME (Explicit height 420px, objectFit cover, ZERO side gaps, sharp rectangle edges) */}
+          {/* 3. FULL DESKTOP SCREEN SHOWCASE (objectFit: contain, 0% cropping at top/bottom, sharp rectangle edges) */}
           <div
             style={{
               width: '100%',
-              height: '420px',
-              minHeight: '360px',
               borderRadius: '0px',
               overflow: 'hidden',
               border: '1px solid var(--border-subtle)',
               background: '#09090b',
-              position: 'relative',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
             }}
           >
             <video
@@ -195,8 +195,9 @@ export default function ProjectDetailModal({ project, onClose }) {
               poster={project.image}
               style={{
                 width: '100%',
-                height: '100%',
-                objectFit: 'cover',
+                height: 'auto',
+                maxHeight: '520px',
+                objectFit: 'contain', // 100% full desktop app interface - ZERO CROPPING at top or bottom!
                 borderRadius: '0px',
                 display: 'block',
               }}
