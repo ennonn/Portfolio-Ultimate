@@ -9,13 +9,13 @@ import TechStack from './components/TechStack';
 import Certifications from './components/Certifications';
 import ContactTrigger from './components/ContactTrigger';
 import ChatBotBubble from './components/ChatBotBubble';
-import ProjectDetailView from './components/ProjectDetailView';
 import AllProjectsView from './components/AllProjectsView';
+import ProjectDetailModal from './components/ProjectDetailModal';
 import { portfolioData } from './data/portfolioData';
 
 export default function App() {
   const [theme, setTheme] = useState('light');
-  const [viewMode, setViewMode] = useState('main'); // 'main' | 'all-projects' | 'project-detail'
+  const [viewMode, setViewMode] = useState('main'); // 'main' | 'all-projects'
   const [selectedProjectId, setSelectedProjectId] = useState(null);
 
   // Force window to scroll to top on page refresh and set light mode
@@ -35,8 +35,10 @@ export default function App() {
 
   const handleSelectProject = (projectId) => {
     setSelectedProjectId(projectId);
-    setViewMode('project-detail');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleCloseModal = () => {
+    setSelectedProjectId(null);
   };
 
   const handleOpenAllProjects = () => {
@@ -60,14 +62,7 @@ export default function App() {
         onGoHome={handleBackToMain}
       />
 
-      {viewMode === 'project-detail' && selectedProject ? (
-        <main>
-          <ProjectDetailView
-            project={selectedProject}
-            onBack={handleBackToMain}
-          />
-        </main>
-      ) : viewMode === 'all-projects' ? (
+      {viewMode === 'all-projects' ? (
         <main>
           <AllProjectsView
             onBack={handleBackToMain}
@@ -87,6 +82,14 @@ export default function App() {
           <Certifications />
           <ContactTrigger />
         </main>
+      )}
+
+      {/* Sleek Minimalist Modal for Single Project Details */}
+      {selectedProject && (
+        <ProjectDetailModal
+          project={selectedProject}
+          onClose={handleCloseModal}
+        />
       )}
 
       <ChatBotBubble />
