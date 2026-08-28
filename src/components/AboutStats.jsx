@@ -44,12 +44,12 @@ export default function AboutStats() {
         justifyContent: 'center',
       }}
     >
-      {/* Quote Banner Section with 0.5s Staggered Text Morphing */}
+      {/* Quote Banner Section with Sequential Text Morphing & 72px Gap */}
       <div
         style={{
           display: 'flex',
           flexDirection: 'column',
-          gap: '44px',
+          gap: '72px',
           marginBottom: '160px',
         }}
       >
