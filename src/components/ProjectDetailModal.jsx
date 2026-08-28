@@ -1,10 +1,8 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import { X, ExternalLink, CheckCircle2 } from 'lucide-react';
 import { GithubIcon } from './BrandIcons';
 
 export default function ProjectDetailModal({ project, onClose }) {
-  const videoRef = useRef(null);
-
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === 'Escape') onClose();
@@ -16,20 +14,6 @@ export default function ProjectDetailModal({ project, onClose }) {
       document.body.style.overflow = 'unset';
     };
   }, [onClose]);
-
-  // Programmatically trigger video autoplay on modal open
-  useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.defaultMuted = true;
-      videoRef.current.muted = true;
-      const playPromise = videoRef.current.play();
-      if (playPromise !== undefined) {
-        playPromise.catch((err) => {
-          console.log('Autoplay handler:', err);
-        });
-      }
-    }
-  }, [project]);
 
   if (!project) return null;
 
@@ -171,39 +155,25 @@ export default function ProjectDetailModal({ project, onClose }) {
             ))}
           </div>
 
-          {/* 3. CENTERED DESKTOP FRAME (UNCONSTRAINED NATURAL HEIGHT - ZERO TOP/BOTTOM CROPPING) */}
-          <div
-            style={{
-              maxWidth: '740px',
-              width: '90%',
-              margin: '0 auto',
-              borderRadius: '0px',
-              overflow: 'hidden',
-              border: '1px solid var(--border-subtle)',
-              background: '#09090b',
-              boxShadow: '0 8px 24px rgba(0,0,0,0.12)',
-            }}
-          >
+          {/* 3. CLEAN UNCROPPED GIF-STYLE VIDEO LOOP (No Controls, Standard height: auto, Zero Cropping) */}
+          <div style={{ width: '100%', display: 'flex', justifyContent: 'center', margin: '8px 0' }}>
             <video
               key={project.videoUrl}
-              ref={videoRef}
               src={project.videoUrl}
               autoPlay
               loop
               muted
               playsInline
-              controls
               style={{
                 width: '100%',
-                height: 'auto', // Expands to natural height so top navigation & bottom interface are NEVER cropped!
-                borderRadius: '0px',
+                maxWidth: '780px',
+                height: 'auto',
                 display: 'block',
-                background: '#09090b',
+                borderRadius: '0px',
+                border: '1px solid var(--border-subtle)',
+                background: '#000000',
               }}
-            >
-              <source src={project.videoUrl} type="video/mp4" />
-              Your browser does not support HTML5 video playback.
-            </video>
+            />
           </div>
 
           {/* 4. Action Links Bar */}
