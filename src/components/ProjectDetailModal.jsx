@@ -22,9 +22,12 @@ export default function ProjectDetailModal({ project, onClose }) {
     if (videoRef.current) {
       videoRef.current.defaultMuted = true;
       videoRef.current.muted = true;
-      videoRef.current.play().catch((err) => {
-        console.log('Video autoplay:', err);
-      });
+      const playPromise = videoRef.current.play();
+      if (playPromise !== undefined) {
+        playPromise.catch((err) => {
+          console.log('Autoplay handled:', err);
+        });
+      }
     }
   }, [project]);
 
@@ -192,7 +195,10 @@ export default function ProjectDetailModal({ project, onClose }) {
                 height: 'auto',
                 display: 'block',
               }}
-            />
+            >
+              <source src={project.videoUrl} type="video/mp4" />
+              Your browser does not support HTML5 video playback.
+            </video>
           </div>
 
           {/* 4. Action Links Bar */}

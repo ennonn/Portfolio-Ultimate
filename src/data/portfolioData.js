@@ -1,3 +1,6 @@
+import accoreDemo from '../../video-walkthrough/accore-demo.mp4';
+import uaAttendanceDemo from '../../video-walkthrough/ua-attendance-demo.mp4';
+
 export const portfolioData = {
   personal: {
     name: "Ian Macabulos",
@@ -33,7 +36,7 @@ export const portfolioData = {
       category: "Full-Stack",
       shortDesc: "Laboratory attendance platform combining device cryptographic signatures, GPS geofencing, and PIN verification.",
       image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=1200&q=80",
-      videoUrl: "/video-walkthrough/ua-attendance-demo.mp4",
+      videoUrl: uaAttendanceDemo,
       tags: ["Next.js", "TypeScript", "PostgreSQL", "Prisma", "React Native", "Expo"],
       liveUrl: "https://example.com/labsign",
       githubUrl: "https://github.com/example/labsign",
@@ -56,7 +59,7 @@ export const portfolioData = {
       category: "GovTech",
       shortDesc: "GovTech platform featuring Geospatial Signal Routing (GSR) to track municipal maintenance issues and route emergency reports.",
       image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1200&q=80",
-      videoUrl: "/video-walkthrough/accore-demo.mp4",
+      videoUrl: accoreDemo,
       tags: ["MEAN Stack", "Leaflet.js", "Express", "GeoJSON", "Turf.js"],
       liveUrl: "https://example.com/ac-core",
       githubUrl: "https://github.com/example/ac-core",
@@ -77,7 +80,7 @@ export const portfolioData = {
       category: "Web App",
       shortDesc: "Career management platform to score resumes against job descriptions, parse application history, and track interviews.",
       image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80",
-      videoUrl: "/video-walkthrough/ua-attendance-demo.mp4",
+      videoUrl: uaAttendanceDemo,
       tags: ["Laravel 11", "Livewire 3", "Neon Postgres", "Tailwind CSS"],
       liveUrl: "https://example.com/grit",
       githubUrl: "https://github.com/example/grit",
@@ -98,7 +101,7 @@ export const portfolioData = {
       category: "Developer Tools",
       shortDesc: "Developer intelligence hub combining Monaco Editor with searchable neural code snippet storage.",
       image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1200&q=80",
-      videoUrl: "/video-walkthrough/accore-demo.mp4",
+      videoUrl: accoreDemo,
       tags: ["Next.js 15", "FastAPI", "pgvector", "Monaco Editor"],
       liveUrl: "https://example.com/kodasync",
       githubUrl: "https://github.com/example/kodasync",
@@ -119,7 +122,7 @@ export const portfolioData = {
       category: "Full-Stack",
       shortDesc: "Financial dashboard for tracking recurring software subscriptions, fortified with 2FA security and spending charts.",
       image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80",
-      videoUrl: "/video-walkthrough/ua-attendance-demo.mp4",
+      videoUrl: uaAttendanceDemo,
       tags: ["Next.js 15", "Neon Postgres", "Prisma", "2FA Security", "Recharts"],
       liveUrl: "https://example.com/subvantage",
       githubUrl: "https://github.com/example/subvantage",
@@ -140,7 +143,7 @@ export const portfolioData = {
       category: "Frontend",
       shortDesc: "Inventory and sales management system featuring real-time stock tracking and printable POS receipts.",
       image: "https://images.unsplash.com/photo-1556742049-0a67daf40955?auto=format&fit=crop&w=1200&q=80",
-      videoUrl: "/video-walkthrough/accore-demo.mp4",
+      videoUrl: accoreDemo,
       tags: ["TypeScript", "MERN Stack", "Tailwind CSS"],
       liveUrl: "https://example.com/mamars",
       githubUrl: "https://github.com/example/mamars",
@@ -161,7 +164,7 @@ export const portfolioData = {
       category: "Developer Tools",
       shortDesc: "Developer API gateway service managing key generation, rate limiting, and analytics headers.",
       image: "https://images.unsplash.com/photo-1618401471353-b98afee0b2eb?auto=format&fit=crop&w=1200&q=80",
-      videoUrl: "/video-walkthrough/ua-attendance-demo.mp4",
+      videoUrl: uaAttendanceDemo,
       tags: ["Go", "Redis", "Docker", "PostgreSQL"],
       liveUrl: "https://example.com/cloudgate",
       githubUrl: "https://github.com/example/cloudgate",
@@ -181,7 +184,7 @@ export const portfolioData = {
       category: "Web App",
       shortDesc: "Team collaboration suite featuring Markdown document sync, presence indicators, and WebRTC video.",
       image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80",
-      videoUrl: "/video-walkthrough/accore-demo.mp4",
+      videoUrl: accoreDemo,
       tags: ["React", "WebSockets", "Node.js", "Tailwind CSS"],
       liveUrl: "https://example.com/nexus",
       githubUrl: "https://github.com/example/nexus",
@@ -264,7 +267,7 @@ export const portfolioData = {
       items: [
         { name: "PostgreSQL", level: "Advanced", desc: "Relational queries, database indexing, pgvector", website: "https://www.postgresql.org", icon: "Database" },
         { name: "Prisma ORM", level: "Advanced", desc: "Type-safe database queries and migrations", website: "https://www.prisma.io", icon: "Layers" },
-        { name: "MongoDB", level: "Intermediate", desc: "NoSQL document stores and collections", website: "https://www.mongodb.com", icon: "HardDrive" },
+        { name: "MongoDB", level: "Intermediate", desc: "NoSQL document stores and collections", website: "https://mongodb.com", icon: "HardDrive" },
         { name: "Neon DB", level: "Advanced", desc: "Serverless Postgres scaling", website: "https://neon.tech", icon: "Cloud" }
       ]
     },
