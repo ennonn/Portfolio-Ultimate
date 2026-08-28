@@ -17,7 +17,7 @@ export default function AboutStats() {
         justifyContent: 'center',
       }}
     >
-      {/* Quote Banner Section */}
+      {/* Quote Banner Section with Shadcn Text Morph Effect */}
       <div
         style={{
           display: 'flex',
@@ -26,8 +26,9 @@ export default function AboutStats() {
           marginBottom: '90px',
         }}
       >
-        <div style={{ maxWidth: '720px' }}>
+        <div style={{ maxWidth: '740px' }}>
           <p
+            className="text-morph"
             style={{
               fontSize: 'clamp(1.6rem, 3.5vw, 2.4rem)',
               fontWeight: '700',
@@ -40,8 +41,9 @@ export default function AboutStats() {
           </p>
         </div>
 
-        <div style={{ maxWidth: '720px', alignSelf: 'flex-end', textAlign: 'right' }}>
+        <div style={{ maxWidth: '740px', alignSelf: 'flex-end', textAlign: 'right' }}>
           <p
+            className="text-morph-delayed"
             style={{
               fontSize: 'clamp(1.6rem, 3.5vw, 2.4rem)',
               fontWeight: '700',

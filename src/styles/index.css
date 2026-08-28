@@ -84,7 +84,7 @@ p {
   line-height: 1.6;
 }
 
-/* Animated Shadcn Highlight Text Effect (Slow & Delayed) */
+/* Animated Shadcn Highlight Text Effect */
 @keyframes highlightSweep {
   0% {
     width: 0%;
@@ -123,6 +123,41 @@ p {
 
 [data-theme="light"] .highlight-text::before {
   background: linear-gradient(90deg, #c7d2fe 0%, #bae6fd 100%);
+}
+
+/* Shadcn Text Morphing Animation */
+@keyframes textMorphBlurIn {
+  0% {
+    opacity: 0;
+    filter: blur(16px);
+    transform: translateY(24px) scale(0.96);
+  }
+  60% {
+    opacity: 0.85;
+    filter: blur(4px);
+    transform: translateY(-2px) scale(1.01);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0px);
+    transform: translateY(0) scale(1);
+  }
+}
+
+.text-morph {
+  animation: textMorphBlurIn 1.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: filter, opacity, transform;
+  transition: all 0.3s ease;
+}
+
+.text-morph-delayed {
+  animation: textMorphBlurIn 1.6s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
+  will-change: filter, opacity, transform;
+  transition: all 0.3s ease;
+}
+
+.text-morph:hover, .text-morph-delayed:hover {
+  text-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
 }
 
 /* Minimalist Clean Cards */
