@@ -12,7 +12,7 @@ export default function ProjectCard({ project, onClick }) {
         videoRef.current.play().catch(() => {});
       } else {
         videoRef.current.pause();
-        videoRef.current.currentTime = 0;
+        videoRef.current.currentTime = 0.1;
       }
     }
   }, [isHovered]);
@@ -42,7 +42,7 @@ export default function ProjectCard({ project, onClick }) {
         e.currentTarget.style.borderColor = 'var(--border-subtle)';
       }}
     >
-      {/* Project Card Media Display (Shows Video First Frame as Thumbnail, Plays on Hover) */}
+      {/* Project Card Media Display (Displays Video First Frame as Native App Thumbnail, Plays on Hover) */}
       <div
         style={{
           width: '100%',
@@ -52,34 +52,21 @@ export default function ProjectCard({ project, onClick }) {
           background: '#09090b',
         }}
       >
-        {project.videoUrl ? (
-          <video
-            ref={videoRef}
-            src={`${project.videoUrl}#t=0.1`}
-            preload="metadata"
-            loop
-            muted
-            playsInline
-            poster={project.image}
-            style={{
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover',
-              display: 'block',
-            }}
-          />
-        ) : (
-          <img
-            src={project.image}
-            alt={project.title}
-            style={{
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover',
-              display: 'block',
-            }}
-          />
-        )}
+        <video
+          ref={videoRef}
+          src={`${project.videoUrl}#t=0.1`}
+          preload="auto"
+          loop
+          muted
+          playsInline
+          style={{
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            display: 'block',
+            background: '#09090b',
+          }}
+        />
 
         <span
           style={{
