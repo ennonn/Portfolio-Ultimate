@@ -17,6 +17,7 @@ export default function ProjectDetailModal({ project, onClose }) {
     };
   }, [onClose]);
 
+  // Programmatically trigger video autoplay on modal open
   useEffect(() => {
     if (videoRef.current) {
       videoRef.current.defaultMuted = true;
@@ -24,7 +25,7 @@ export default function ProjectDetailModal({ project, onClose }) {
       const playPromise = videoRef.current.play();
       if (playPromise !== undefined) {
         playPromise.catch((err) => {
-          console.log('Autoplay handled:', err);
+          console.log('Autoplay handler:', err);
         });
       }
     }
@@ -170,25 +171,22 @@ export default function ProjectDetailModal({ project, onClose }) {
             ))}
           </div>
 
-          {/* 3. CLEAN VIDEO DEMO PLAYER */}
+          {/* 3. FIGMA DESKTOP FRAME (1440 x 1024 Aspect Ratio, Pure Sharp Rectangle, Zero Black Gaps) */}
           <div
             style={{
               width: '100%',
-              minHeight: '300px',
-              borderRadius: '12px',
+              aspectRatio: '1440 / 1024',
+              borderRadius: '0px',
               overflow: 'hidden',
               border: '1px solid var(--border-subtle)',
-              background: '#000000',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
+              background: 'transparent',
+              boxShadow: '0 4px 20px rgba(0,0,0,0.1)',
             }}
           >
             <video
               key={project.videoUrl}
               ref={videoRef}
               src={project.videoUrl}
-              controls
               autoPlay
               loop
               muted
@@ -196,14 +194,13 @@ export default function ProjectDetailModal({ project, onClose }) {
               poster={project.image}
               style={{
                 width: '100%',
-                maxHeight: '480px',
-                objectFit: 'contain',
+                height: '100%',
+                objectFit: 'cover',
+                borderRadius: '0px',
                 display: 'block',
-                background: '#000000',
               }}
             >
               <source src={project.videoUrl} type="video/mp4" />
-              Your browser does not support HTML5 video playback.
             </video>
           </div>
 
