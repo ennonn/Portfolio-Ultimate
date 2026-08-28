@@ -17,14 +17,16 @@ export default function ProjectDetailModal({ project, onClose }) {
     };
   }, [onClose]);
 
-  // Programmatically force video playback and looping on mount
   useEffect(() => {
     if (videoRef.current) {
       videoRef.current.defaultMuted = true;
       videoRef.current.muted = true;
-      videoRef.current.play().catch((err) => {
-        console.warn('Autoplay handler:', err);
-      });
+      const playPromise = videoRef.current.play();
+      if (playPromise !== undefined) {
+        playPromise.catch((err) => {
+          console.log('Autoplay handled:', err);
+        });
+      }
     }
   }, [project]);
 
@@ -168,32 +170,39 @@ export default function ProjectDetailModal({ project, onClose }) {
             ))}
           </div>
 
-          {/* 3. PROMINENT VIDEO DEMO FRAME */}
+          {/* 3. PROMINENT VIDEO DEMO FRAME (With Controls & Guaranteed Height) */}
           <div
             style={{
               width: '100%',
-              height: '380px',
+              minHeight: '380px',
               borderRadius: '18px',
               overflow: 'hidden',
               border: '1px solid var(--border-subtle)',
-              background: '#09090b',
+              background: '#000000',
               boxShadow: '0 8px 30px rgba(0,0,0,0.2)',
-              position: 'relative',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
             }}
           >
             <video
               ref={videoRef}
               src={project.videoUrl}
+              controls
               autoPlay
               loop
               muted
               playsInline
-              poster={project.image}
+              onCanPlay={(e) => {
+                e.target.muted = true;
+                e.target.play().catch(() => {});
+              }}
               style={{
                 width: '100%',
-                height: '100%',
-                objectFit: 'cover',
+                maxHeight: '460px',
+                objectFit: 'contain',
                 display: 'block',
+                background: '#000000',
               }}
             />
           </div>

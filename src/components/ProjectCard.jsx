@@ -5,10 +5,15 @@ export default function ProjectCard({ project, onClick }) {
   const videoRef = useRef(null);
 
   useEffect(() => {
-    if (isHovered && videoRef.current) {
-      videoRef.current.defaultMuted = true;
-      videoRef.current.muted = true;
-      videoRef.current.play().catch(() => {});
+    if (videoRef.current) {
+      if (isHovered) {
+        videoRef.current.defaultMuted = true;
+        videoRef.current.muted = true;
+        videoRef.current.play().catch(() => {});
+      } else {
+        videoRef.current.pause();
+        videoRef.current.currentTime = 0;
+      }
     }
   }, [isHovered]);
 
@@ -37,7 +42,7 @@ export default function ProjectCard({ project, onClick }) {
         e.currentTarget.style.borderColor = 'var(--border-subtle)';
       }}
     >
-      {/* Project Card Image & Hover Video */}
+      {/* Project Card Media Display (Shows Video First Frame as Thumbnail, Plays on Hover) */}
       <div
         style={{
           width: '100%',
@@ -47,11 +52,11 @@ export default function ProjectCard({ project, onClick }) {
           background: '#09090b',
         }}
       >
-        {isHovered && project.videoUrl ? (
+        {project.videoUrl ? (
           <video
             ref={videoRef}
-            src={project.videoUrl}
-            autoPlay
+            src={`${project.videoUrl}#t=0.1`}
+            preload="metadata"
             loop
             muted
             playsInline
