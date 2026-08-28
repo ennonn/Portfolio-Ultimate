@@ -15,7 +15,7 @@ export default function AboutStats() {
         }
       },
       {
-        threshold: 0.25, // Triggers when 25% of the section is visible
+        threshold: 0.2, // Triggers when 20% of the section is visible
       }
     );
 
@@ -44,13 +44,13 @@ export default function AboutStats() {
         justifyContent: 'center',
       }}
     >
-      {/* Quote Banner Section with Sequential Text Morph Effect */}
+      {/* Quote Banner Section with 0.5s Staggered Text Morphing */}
       <div
         style={{
           display: 'flex',
           flexDirection: 'column',
-          gap: '40px',
-          marginBottom: '90px',
+          gap: '44px',
+          marginBottom: '160px',
         }}
       >
         <div style={{ maxWidth: '740px' }}>
