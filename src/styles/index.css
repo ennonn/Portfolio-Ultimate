@@ -1,37 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
+/* Default Light Mode Design System */
 :root {
-  --bg-dark: #09090b;
-  --bg-surface: #121215;
-  --bg-card: #18181b;
-  --bg-card-hover: #27272a;
-  
-  --border-subtle: #27272a;
-  --border-hover: #3f3f46;
-  
-  --text-main: #fafafa;
-  --text-muted: #a1a1aa;
-  --text-subtle: #71717a;
-  
-  --btn-primary-bg: #ffffff;
-  --btn-primary-text: #09090b;
-  --btn-secondary-bg: rgba(255, 255, 255, 0.05);
-  
-  --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.3);
-  
-  --font-main: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  
-  --radius-sm: 6px;
-  --radius-md: 12px;
-  --radius-lg: 18px;
-  --radius-pill: 9999px;
-  
-  --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-normal: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Light Mode Overrides */
-[data-theme="light"] {
   --bg-dark: #f8f9fa;
   --bg-surface: #f1f3f5;
   --bg-card: #ffffff;
@@ -49,6 +19,37 @@
   --btn-secondary-bg: #f1f3f5;
   
   --shadow-card: 0 8px 24px rgba(0, 0, 0, 0.04);
+  
+  --font-main: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-pill: 9999px;
+  
+  --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Dark Mode Overrides */
+[data-theme="dark"] {
+  --bg-dark: #09090b;
+  --bg-surface: #121215;
+  --bg-card: #18181b;
+  --bg-card-hover: #27272a;
+  
+  --border-subtle: #27272a;
+  --border-hover: #3f3f46;
+  
+  --text-main: #fafafa;
+  --text-muted: #a1a1aa;
+  --text-subtle: #71717a;
+  
+  --btn-primary-bg: #ffffff;
+  --btn-primary-text: #09090b;
+  --btn-secondary-bg: rgba(255, 255, 255, 0.05);
+  
+  --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
 * {
@@ -114,15 +115,15 @@ p {
   bottom: 3px;
   height: 80%;
   width: 0%;
-  background: linear-gradient(90deg, rgba(99, 102, 241, 0.45) 0%, rgba(6, 182, 212, 0.45) 100%);
+  background: linear-gradient(90deg, #c7d2fe 0%, #bae6fd 100%);
   border-radius: 6px;
   z-index: -1;
   transform: skewX(-8deg);
   animation: highlightSweep 2.2s cubic-bezier(0.25, 1, 0.5, 1) 0.5s forwards;
 }
 
-[data-theme="light"] .highlight-text::before {
-  background: linear-gradient(90deg, #c7d2fe 0%, #bae6fd 100%);
+[data-theme="dark"] .highlight-text::before {
+  background: linear-gradient(90deg, rgba(99, 102, 241, 0.45) 0%, rgba(6, 182, 212, 0.45) 100%);
 }
 
 /* Shadcn Text Morphing Animation (Sequential 2.0s Delay) */

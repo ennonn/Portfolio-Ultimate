@@ -13,15 +13,16 @@ import ProjectDetailView from './components/ProjectDetailView';
 import { portfolioData } from './data/portfolioData';
 
 export default function App() {
-  const [theme, setTheme] = useState('dark');
+  const [theme, setTheme] = useState('light');
   const [activeProjectId, setActiveProjectId] = useState(null);
 
-  // Force window to scroll to top on page refresh
+  // Force window to scroll to top on page refresh and set light mode
   useEffect(() => {
     if ('scrollRestoration' in window.history) {
       window.history.scrollRestoration = 'manual';
     }
     window.scrollTo(0, 0);
+    document.documentElement.setAttribute('data-theme', 'light');
   }, []);
 
   const toggleTheme = () => {
