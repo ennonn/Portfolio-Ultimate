@@ -22,12 +22,9 @@ export default function ProjectDetailModal({ project, onClose }) {
     if (videoRef.current) {
       videoRef.current.defaultMuted = true;
       videoRef.current.muted = true;
-      const playPromise = videoRef.current.play();
-      if (playPromise !== undefined) {
-        playPromise.catch((err) => {
-          console.log('Autoplay handled:', err);
-        });
-      }
+      videoRef.current.play().catch((err) => {
+        console.log('Video autoplay:', err);
+      });
     }
   }, [project]);
 
@@ -56,8 +53,8 @@ export default function ProjectDetailModal({ project, onClose }) {
         onClick={(e) => e.stopPropagation()}
         style={{
           width: '100%',
-          maxWidth: '920px',
-          maxHeight: '90vh',
+          maxWidth: '960px',
+          maxHeight: '92vh',
           background: 'var(--bg-card)',
           border: '1px solid var(--border-subtle)',
           borderRadius: '24px',
@@ -171,7 +168,7 @@ export default function ProjectDetailModal({ project, onClose }) {
             ))}
           </div>
 
-          {/* 3. DESKTOP SCALE LOOPING GIF FRAME (No Player Controls, Natural Desktop Width & Height) */}
+          {/* 3. DESKTOP SCALE LOOPING GIF VIDEO FRAME */}
           <div
             style={{
               width: '100%',
@@ -180,8 +177,6 @@ export default function ProjectDetailModal({ project, onClose }) {
               border: '1px solid var(--border-subtle)',
               background: '#09090b',
               boxShadow: '0 8px 30px rgba(0,0,0,0.2)',
-              pointerEvents: 'none',
-              userSelect: 'none',
             }}
           >
             <video
@@ -194,7 +189,7 @@ export default function ProjectDetailModal({ project, onClose }) {
               poster={project.image}
               style={{
                 width: '100%',
-                height: 'auto', // Full natural desktop scale!
+                height: 'auto',
                 display: 'block',
               }}
             />
