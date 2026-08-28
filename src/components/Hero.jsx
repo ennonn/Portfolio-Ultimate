@@ -20,49 +20,56 @@ export default function Hero() {
     <section
       id="hero"
       style={{
-        paddingTop: '130px',
-        paddingBottom: '50px',
+        paddingTop: '140px',
+        paddingBottom: '80px',
         maxWidth: '1280px',
         margin: '0 auto',
         paddingLeft: 'clamp(16px, 3vw, 36px)',
         paddingRight: 'clamp(16px, 3vw, 36px)',
+        minHeight: '85vh',
+        display: 'flex',
+        alignItems: 'center',
       }}
     >
       <div
         style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-          gap: '48px',
+          gap: '56px',
           alignItems: 'center',
+          width: '100%',
         }}
       >
         {/* Left Column: Intro & Headline */}
         <div>
+          {/* Tagline Pill */}
           <div
             style={{
               display: 'inline-block',
-              padding: '4px 10px',
+              padding: '6px 14px',
               borderRadius: '6px',
               background: 'var(--btn-secondary-bg)',
               border: '1px solid var(--border-subtle)',
-              color: 'var(--text-muted)',
-              fontSize: '0.8rem',
-              fontWeight: '600',
-              marginBottom: '16px',
+              color: 'var(--text-subtle)',
+              fontSize: '0.78rem',
+              fontWeight: '700',
+              marginBottom: '20px',
               textTransform: 'uppercase',
-              letterSpacing: '0.05em',
+              letterSpacing: '0.08em',
             }}
           >
-            Available for Roles & Freelance
+            AVAILABLE FOR ROLES & FREELANCE
           </div>
 
+          {/* Name & Role */}
           <h1
             style={{
-              fontSize: 'clamp(2.4rem, 4.5vw, 3.6rem)',
+              fontSize: 'clamp(2.8rem, 5vw, 4rem)',
               fontWeight: '800',
-              lineHeight: 1.15,
-              marginBottom: '12px',
+              lineHeight: 1.1,
+              marginBottom: '10px',
               color: 'var(--text-main)',
+              letterSpacing: '-0.03em',
             }}
           >
             {personal.name}
@@ -83,8 +90,8 @@ export default function Hero() {
             style={{
               fontSize: '1.05rem',
               color: 'var(--text-muted)',
-              marginBottom: '28px',
-              maxWidth: '580px',
+              marginBottom: '32px',
+              maxWidth: '540px',
               lineHeight: 1.6,
             }}
           >
@@ -97,22 +104,31 @@ export default function Hero() {
               display: 'flex',
               flexWrap: 'wrap',
               gap: '12px',
-              marginBottom: '32px',
+              marginBottom: '36px',
             }}
           >
-            <a href="#projects" className="btn btn-primary">
+            <a href="#projects" className="btn btn-primary" style={{ padding: '12px 24px' }}>
               <span>View Projects</span>
               <ArrowRight size={16} />
             </a>
 
-            <a href="#contact" className="btn btn-secondary">
+            <a href="#contact" className="btn btn-secondary" style={{ padding: '12px 24px' }}>
               <Mail size={16} />
               <span>Contact Me</span>
             </a>
           </div>
 
-          {/* Social Icons Row */}
-          <div style={{ display: 'flex', gap: '10px' }}>
+          {/* Social Icons Container */}
+          <div
+            style={{
+              display: 'inline-flex',
+              gap: '8px',
+              padding: '6px',
+              borderRadius: '12px',
+              background: 'var(--btn-secondary-bg)',
+              border: '1px solid var(--border-subtle)',
+            }}
+          >
             {personal.socials.map((social) => (
               <a
                 key={social.name}
@@ -154,16 +170,16 @@ export default function Hero() {
             className="clean-card"
             style={{
               width: '100%',
-              maxWidth: '440px',
-              padding: '12px',
-              borderRadius: '16px',
+              maxWidth: '460px',
+              padding: '14px',
+              borderRadius: '18px',
             }}
           >
             <div
               style={{
                 width: '100%',
-                height: '350px',
-                borderRadius: '10px',
+                height: '380px',
+                borderRadius: '12px',
                 overflow: 'hidden',
               }}
             >
@@ -181,11 +197,12 @@ export default function Hero() {
               style={{
                 display: 'flex',
                 justifyContent: 'space-between',
-                paddingTop: '12px',
-                paddingLeft: '4px',
-                paddingRight: '4px',
+                paddingTop: '14px',
+                paddingLeft: '6px',
+                paddingRight: '6px',
                 fontSize: '0.85rem',
                 color: 'var(--text-subtle)',
+                fontWeight: '500',
               }}
             >
               <span>{personal.location}</span>

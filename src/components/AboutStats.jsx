@@ -5,21 +5,60 @@ export default function AboutStats() {
   const { mission } = portfolioData;
 
   return (
-    <section id="about" className="section-container" style={{ paddingTop: '40px', paddingBottom: '60px' }}>
+    <section id="about" className="section-container" style={{ paddingTop: '60px', paddingBottom: '80px' }}>
+      {/* Quote Banner Section */}
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '32px',
+          marginBottom: '80px',
+        }}
+      >
+        <div style={{ maxWidth: '640px' }}>
+          <p
+            style={{
+              fontSize: 'clamp(1.4rem, 3vw, 2.1rem)',
+              fontWeight: '700',
+              lineHeight: 1.3,
+              color: 'var(--text-main)',
+              letterSpacing: '-0.02em',
+            }}
+          >
+            “Don't just build a system that displays code, make it work reliably for real users.”
+          </p>
+        </div>
+
+        <div style={{ maxWidth: '640px', alignSelf: 'flex-end', textAlign: 'right' }}>
+          <p
+            style={{
+              fontSize: 'clamp(1.4rem, 3vw, 2.1rem)',
+              fontWeight: '700',
+              lineHeight: 1.3,
+              color: 'var(--text-muted)',
+              letterSpacing: '-0.02em',
+            }}
+          >
+            “Engineering scalable applications with clean architecture and practical workflows.”
+          </p>
+        </div>
+      </div>
+
+      {/* Overview Section */}
       <div className="section-header">
         <div className="tag">
-          <span>Overview</span>
+          <span>OVERVIEW</span>
         </div>
         <h2>{mission.tagline}</h2>
         <p>{mission.subtitle}</p>
       </div>
 
-      {/* Sleek Horizontal Rectangular Cards Row */}
+      {/* 3 Stat Cards Row matching Page 2 Mockup */}
       <div
         style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
-          gap: '16px',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+          gap: '20px',
         }}
       >
         {mission.stats.map((stat) => (
@@ -27,28 +66,39 @@ export default function AboutStats() {
             key={stat.label}
             className="clean-card"
             style={{
-              padding: '20px 24px',
+              padding: '24px 28px',
+              borderRadius: '12px',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'space-between',
-              minHeight: '80px',
+              gap: '16px',
             }}
           >
             <div>
-              <p style={{ fontSize: '0.8rem', color: 'var(--text-subtle)', textTransform: 'uppercase', letterSpacing: '0.05em', fontWeight: '600', marginBottom: '2px' }}>
+              <p
+                style={{
+                  fontSize: '0.75rem',
+                  color: 'var(--text-subtle)',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.08em',
+                  fontWeight: '700',
+                  marginBottom: '4px',
+                }}
+              >
                 {stat.label}
               </p>
-              <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>
+              <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', lineHeight: 1.4 }}>
                 {stat.detail}
               </p>
             </div>
 
-            <div style={{ textAlign: 'right' }}>
+            <div style={{ textAlign: 'right', flexShrink: 0 }}>
               <span
                 style={{
-                  fontSize: '1.6rem',
-                  fontWeight: '700',
+                  fontSize: '1.65rem',
+                  fontWeight: '800',
                   color: 'var(--text-main)',
+                  letterSpacing: '-0.02em',
                 }}
               >
                 {stat.value}
