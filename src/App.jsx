@@ -1,66 +1,87 @@
 import React, { useState, useEffect } from 'react';
-import './styles/index.css';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import AboutStats from './components/AboutStats';
 import Projects from './components/Projects';
-import ProjectDetailView from './components/ProjectDetailView';
 import Experience from './components/Experience';
 import TechStack from './components/TechStack';
 import Certifications from './components/Certifications';
 import ContactTrigger from './components/ContactTrigger';
-import Footer from './components/Footer';
 import ChatBotBubble from './components/ChatBotBubble';
-import ScrollToTop from './components/ScrollToTop';
+import ProjectDetailView from './components/ProjectDetailView';
+import { portfolioData } from './data/portfolioData';
 
 export default function App() {
-  const [theme, setTheme] = useState(() => {
-    return localStorage.getItem('portfolio-theme') || 'dark';
-  });
-  const [selectedProject, setSelectedProject] = useState(null);
-  const [chatOpen, setChatOpen] = useState(false);
+  const [theme, setTheme] = useState('dark');
+  const [activeProjectId, setActiveProjectId] = useState(null);
 
+  // Force window to scroll to top on page refresh
   useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme);
-    localStorage.setItem('portfolio-theme', theme);
-  }, [theme]);
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+    window.scrollTo(0, 0);
+  }, []);
 
   const toggleTheme = () => {
-    setTheme(prev => (prev === 'dark' ? 'light' : 'dark'));
+    const nextTheme = theme === 'dark' ? 'light' : 'dark';
+    setTheme(nextTheme);
+    document.documentElement.setAttribute('data-theme', nextTheme);
   };
 
+  const handleSelectProject = (projectId) => {
+    setActiveProjectId(projectId);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleBackToProjects = () => {
+    setActiveProjectId(null);
+  };
+
+  const selectedProject = portfolioData.projects.find((p) => p.id === activeProjectId);
+
   return (
-    <div style={{ minHeight: '100vh', position: 'relative' }}>
+    <div style={{ minHeight: '100vh', background: 'var(--bg-dark)' }}>
       <Navbar
         theme={theme}
         onToggleTheme={toggleTheme}
-        onGoHome={() => setSelectedProject(null)}
+        onGoHome={handleBackToProjects}
       />
 
-      {selectedProject ? (
-        /* Dedicated Full Project Detail View (Reference Screenshot 2) */
-        <ProjectDetailView
-          project={selectedProject}
-          onBack={() => setSelectedProject(null)}
-        />
+      {activeProjectId && selectedProject ? (
+        <main style={{ paddingTop: '100px', minHeight: '80vh' }}>
+          <ProjectDetailView
+            project={selectedProject}
+            onBack={handleBackToProjects}
+          />
+        </main>
       ) : (
-        /* Main Portfolio Sections */
-        <>
+        <main>
           <Hero />
           <AboutStats />
-          <Projects onSelectProject={setSelectedProject} />
+          <Projects onSelectProject={handleSelectProject} />
           <Experience />
           <TechStack />
           <Certifications />
-          <ContactTrigger onOpenChat={() => setChatOpen(true)} />
-        </>
+          <ContactTrigger />
+        </main>
       )}
 
-      <Footer />
+      <ChatBotBubble />
 
-      {/* Global Interactive Utilities */}
-      <ChatBotBubble isOpen={chatOpen} onToggle={() => setChatOpen(!chatOpen)} />
-      <ScrollToTop />
+      <footer
+        style={{
+          borderTop: '1px solid var(--border-subtle)',
+          padding: '40px 20px',
+          textAlign: 'center',
+          color: 'var(--text-subtle)',
+          fontSize: '0.85rem',
+          maxWidth: '1280px',
+          margin: '0 auto',
+        }}
+      >
+        <p>© {new Date().getFullYear()} {portfolioData.personal.name}. All rights reserved.</p>
+      </footer>
     </div>
   );
 }

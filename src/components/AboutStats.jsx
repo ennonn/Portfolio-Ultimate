@@ -20,14 +20,14 @@ export default function AboutStats() {
       { threshold: 0.2 }
     );
 
-    // Observer for Overview Header & Stat Cards (if scrolled directly)
+    // Observer for Overview Header & Stat Cards
     const overviewObserver = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsOverviewVisible(true);
         }
       },
-      { threshold: 0.1 }
+      { threshold: 0.3 }
     );
 
     if (quotesRef.current) quotesObserver.observe(quotesRef.current);
@@ -39,12 +39,12 @@ export default function AboutStats() {
     };
   }, []);
 
-  // Automatically trigger Overview animation right after Quote 2 completes
+  // Generous delay: Trigger Overview animation 5.2s after Quotes start (1.2s after Quote 2 finishes)
   useEffect(() => {
     if (isQuotesVisible) {
       const timer = setTimeout(() => {
         setIsOverviewVisible(true);
-      }, 3600); // Triggers right after Quote 2 finishes morphing
+      }, 5200);
       return () => clearTimeout(timer);
     }
   }, [isQuotesVisible]);
@@ -103,7 +103,7 @@ export default function AboutStats() {
         </div>
       </div>
 
-      {/* Overview Section (Triggers right after 2nd quote finishes or on scroll) */}
+      {/* Overview Section (Generous Delay After Quotes & Scroll Triggered) */}
       <div ref={overviewRef}>
         <div
           className={`section-header ${isOverviewVisible ? 'overview-text-active' : 'overview-text-hidden'}`}
