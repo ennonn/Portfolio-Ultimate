@@ -171,16 +171,17 @@ export default function ProjectDetailModal({ project, onClose }) {
             ))}
           </div>
 
-          {/* 3. FIGMA DESKTOP FRAME (1440 x 1024 Aspect Ratio, Pure Sharp Rectangle, Zero Black Gaps) */}
+          {/* 3. DESKTOP SCALE FRAME (Explicit height 420px, objectFit cover, ZERO side gaps, sharp rectangle edges) */}
           <div
             style={{
               width: '100%',
-              aspectRatio: '1440 / 1024',
+              height: '420px',
+              minHeight: '360px',
               borderRadius: '0px',
               overflow: 'hidden',
               border: '1px solid var(--border-subtle)',
-              background: 'transparent',
-              boxShadow: '0 4px 20px rgba(0,0,0,0.1)',
+              background: '#09090b',
+              position: 'relative',
             }}
           >
             <video
