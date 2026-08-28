@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { portfolioData } from '../data/portfolioData';
-import { ArrowRight, Mail, RotateCw, UserCheck, MapPin, GraduationCap, Code } from 'lucide-react';
+import { ArrowRight, Mail } from 'lucide-react';
 import { GithubIcon, LinkedinIcon } from './BrandIcons';
 
 export default function Hero() {
   const { personal } = portfolioData;
-  const [isFlipped, setIsFlipped] = useState(false);
 
   const getSocialIcon = (name) => {
     switch (name.toLowerCase()) {
@@ -42,7 +41,7 @@ export default function Hero() {
       >
         {/* Left Column: Intro & Headline */}
         <div>
-          {/* Highlighted Status Tag Pill */}
+          {/* Tagline Status Pill */}
           <div
             style={{
               display: 'inline-flex',
@@ -87,7 +86,7 @@ export default function Hero() {
             {personal.name}
           </h1>
 
-          {/* Role Sub-heading with Shadcn Highlight Text Effect */}
+          {/* Role Sub-heading with Animated Shadcn Highlight Text Effect */}
           <h2
             style={{
               fontSize: '1.6rem',
@@ -196,146 +195,35 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Right Column: Interactive 3D Flip Profile Image Card */}
+        {/* Right Column: Clean Vertical Rectangle Portrait Card */}
         <div style={{ display: 'flex', justifyContent: 'center' }}>
           <div
-            className={`flip-card-container ${isFlipped ? 'is-flipped' : ''}`}
-            onClick={() => setIsFlipped(!isFlipped)}
+            className="clean-card"
             style={{
               width: '100%',
-              maxWidth: '480px',
-              height: '440px',
+              maxWidth: '420px',
+              height: '520px',
+              padding: '12px',
+              borderRadius: '20px',
             }}
-            title="Click card to view details"
           >
-            <div className="flip-card-inner" style={{ height: '100%' }}>
-              {/* FRONT SIDE (Profile Photo) */}
-              <div className="flip-card-front clean-card" style={{ height: '100%', padding: '14px', borderRadius: '22px' }}>
-                <div
-                  style={{
-                    width: '100%',
-                    height: '370px',
-                    borderRadius: '16px',
-                    overflow: 'hidden',
-                    position: 'relative',
-                  }}
-                >
-                  <img
-                    src={personal.heroImage}
-                    alt={personal.name}
-                    style={{
-                      width: '100%',
-                      height: '100%',
-                      objectFit: 'cover',
-                    }}
-                  />
-                  <div
-                    style={{
-                      position: 'absolute',
-                      top: '12px',
-                      right: '12px',
-                      padding: '6px 12px',
-                      borderRadius: '9999px',
-                      background: 'rgba(0, 0, 0, 0.65)',
-                      backdropFilter: 'blur(8px)',
-                      color: '#ffffff',
-                      fontSize: '0.75rem',
-                      fontWeight: '600',
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '6px',
-                    }}
-                  >
-                    <RotateCw size={12} />
-                    <span>Click to Flip</span>
-                  </div>
-                </div>
-
-                <div
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    paddingTop: '10px',
-                    fontSize: '0.82rem',
-                    color: 'var(--text-subtle)',
-                    fontWeight: '500',
-                    gap: '6px',
-                  }}
-                >
-                  <UserCheck size={14} />
-                  <span>Click card to reveal personal details</span>
-                </div>
-              </div>
-
-              {/* BACK SIDE (Personal Information) */}
-              <div className="flip-card-back clean-card" style={{ padding: '28px', borderRadius: '22px', background: 'var(--bg-card)' }}>
-                <div>
-                  <div
-                    style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'space-between',
-                      marginBottom: '20px',
-                      paddingBottom: '12px',
-                      borderBottom: '1px solid var(--border-subtle)',
-                    }}
-                  >
-                    <h3 style={{ fontSize: '1.15rem', fontWeight: '800', color: 'var(--text-main)' }}>
-                      Personal Overview
-                    </h3>
-                    <span style={{ fontSize: '0.78rem', color: 'var(--text-subtle)', display: 'flex', alignItems: 'center', gap: '4px' }}>
-                      <RotateCw size={12} /> Flip Back
-                    </span>
-                  </div>
-
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-                    <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
-                      <UserCheck size={18} color="var(--text-muted)" style={{ marginTop: '2px' }} />
-                      <div>
-                        <p style={{ fontSize: '0.78rem', color: 'var(--text-subtle)', fontWeight: '600', textTransform: 'uppercase' }}>Full Name</p>
-                        <p style={{ fontSize: '0.95rem', fontWeight: '700', color: 'var(--text-main)' }}>{personal.name}</p>
-                      </div>
-                    </div>
-
-                    <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
-                      <Code size={18} color="var(--text-muted)" style={{ marginTop: '2px' }} />
-                      <div>
-                        <p style={{ fontSize: '0.78rem', color: 'var(--text-subtle)', fontWeight: '600', textTransform: 'uppercase' }}>Primary Role</p>
-                        <p style={{ fontSize: '0.95rem', fontWeight: '700', color: 'var(--text-main)' }}>{personal.title}</p>
-                      </div>
-                    </div>
-
-                    <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
-                      <MapPin size={18} color="var(--text-muted)" style={{ marginTop: '2px' }} />
-                      <div>
-                        <p style={{ fontSize: '0.78rem', color: 'var(--text-subtle)', fontWeight: '600', textTransform: 'uppercase' }}>Location & Nationality</p>
-                        <p style={{ fontSize: '0.95rem', fontWeight: '700', color: 'var(--text-main)' }}>{personal.location} ({personal.nationality})</p>
-                      </div>
-                    </div>
-
-                    <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
-                      <GraduationCap size={18} color="var(--text-muted)" style={{ marginTop: '2px' }} />
-                      <div>
-                        <p style={{ fontSize: '0.78rem', color: 'var(--text-subtle)', fontWeight: '600', textTransform: 'uppercase' }}>Education</p>
-                        <p style={{ fontSize: '0.95rem', fontWeight: '700', color: 'var(--text-main)' }}>{personal.education}</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div
-                  style={{
-                    paddingTop: '14px',
-                    borderTop: '1px solid var(--border-subtle)',
-                    textAlign: 'center',
-                    fontSize: '0.8rem',
-                    color: 'var(--text-subtle)',
-                  }}
-                >
-                  Click anywhere on card to flip back to photo
-                </div>
-              </div>
+            <div
+              style={{
+                width: '100%',
+                height: '100%',
+                borderRadius: '14px',
+                overflow: 'hidden',
+              }}
+            >
+              <img
+                src={personal.heroImage}
+                alt={personal.name}
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                }}
+              />
             </div>
           </div>
         </div>
