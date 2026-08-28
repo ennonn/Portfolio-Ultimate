@@ -17,13 +17,13 @@ export default function ProjectDetailModal({ project, onClose }) {
     };
   }, [onClose]);
 
-  // Programmatically trigger video autoplay on modal open
+  // Programmatically force video playback and looping on mount
   useEffect(() => {
     if (videoRef.current) {
       videoRef.current.defaultMuted = true;
       videoRef.current.muted = true;
       videoRef.current.play().catch((err) => {
-        console.warn('Autoplay fallback:', err);
+        console.warn('Autoplay handler:', err);
       });
     }
   }, [project]);
@@ -122,14 +122,14 @@ export default function ProjectDetailModal({ project, onClose }) {
         {/* Modal Scrollable Body */}
         <div
           style={{
-            padding: '32px 36px 44px',
+            padding: '28px 32px 40px',
             overflowY: 'auto',
             display: 'flex',
             flexDirection: 'column',
-            gap: '36px',
+            gap: '24px',
           }}
         >
-          {/* Main Title & Description */}
+          {/* 1. Main Title & Subtitle */}
           <div>
             <h1
               style={{
@@ -137,26 +137,49 @@ export default function ProjectDetailModal({ project, onClose }) {
                 fontWeight: '800',
                 lineHeight: 1.15,
                 color: 'var(--text-main)',
-                marginBottom: '12px',
+                marginBottom: '10px',
                 letterSpacing: '-0.02em',
               }}
             >
               {project.title}
             </h1>
-            <p style={{ fontSize: '1.08rem', color: 'var(--text-muted)', lineHeight: 1.6 }}>
+            <p style={{ fontSize: '1.05rem', color: 'var(--text-muted)', lineHeight: 1.6 }}>
               {details?.description || project.shortDesc}
             </p>
           </div>
 
-          {/* Autoplay Looping GIF-style Video Container */}
+          {/* 2. Tech Stack Tag Pills */}
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+            {project.tags.map((tag) => (
+              <span
+                key={tag}
+                style={{
+                  padding: '6px 14px',
+                  borderRadius: '8px',
+                  background: 'var(--btn-secondary-bg)',
+                  border: '1px solid var(--border-subtle)',
+                  fontSize: '0.82rem',
+                  fontWeight: '600',
+                  color: 'var(--text-main)',
+                }}
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+
+          {/* 3. PROMINENT VIDEO DEMO FRAME (16:9 Aspect Ratio, Never Collapses) */}
           <div
             style={{
               width: '100%',
-              borderRadius: '16px',
+              aspectRatio: '16 / 9',
+              minHeight: '340px',
+              borderRadius: '18px',
               overflow: 'hidden',
               border: '1px solid var(--border-subtle)',
               background: '#000000',
-              userSelect: 'none',
+              boxShadow: '0 8px 30px rgba(0,0,0,0.2)',
+              position: 'relative',
             }}
           >
             <video
@@ -169,20 +192,20 @@ export default function ProjectDetailModal({ project, onClose }) {
               poster={project.image}
               style={{
                 width: '100%',
-                maxHeight: '460px',
+                height: '100%',
                 objectFit: 'cover',
                 display: 'block',
               }}
             />
           </div>
 
-          {/* Action Links Bar */}
+          {/* 4. Action Links Bar */}
           <div
             style={{
               display: 'flex',
               flexWrap: 'wrap',
               gap: '12px',
-              paddingBottom: '24px',
+              paddingBottom: '20px',
               borderBottom: '1px solid var(--border-subtle)',
             }}
           >
@@ -213,34 +236,9 @@ export default function ProjectDetailModal({ project, onClose }) {
             )}
           </div>
 
-          {/* Tech Stack Pills Section */}
-          <div style={{ paddingBottom: '28px', borderBottom: '1px solid var(--border-subtle)' }}>
-            <h3 style={{ fontSize: '0.85rem', fontWeight: '700', textTransform: 'uppercase', color: 'var(--text-subtle)', marginBottom: '14px', letterSpacing: '0.06em' }}>
-              Technologies & Frameworks
-            </h3>
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
-              {project.tags.map((tag) => (
-                <span
-                  key={tag}
-                  style={{
-                    padding: '6px 14px',
-                    borderRadius: '8px',
-                    background: 'var(--btn-secondary-bg)',
-                    border: '1px solid var(--border-subtle)',
-                    fontSize: '0.82rem',
-                    fontWeight: '600',
-                    color: 'var(--text-main)',
-                  }}
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          {/* Architecture Highlights */}
+          {/* 5. Key Architecture & Features */}
           {details?.architecture && (
-            <div style={{ paddingBottom: '28px', borderBottom: '1px solid var(--border-subtle)' }}>
+            <div style={{ paddingBottom: '24px', borderBottom: '1px solid var(--border-subtle)' }}>
               <h3 style={{ fontSize: '0.85rem', fontWeight: '700', textTransform: 'uppercase', color: 'var(--text-subtle)', marginBottom: '16px', letterSpacing: '0.06em' }}>
                 Key Architecture & Features
               </h3>
@@ -271,7 +269,7 @@ export default function ProjectDetailModal({ project, onClose }) {
             </div>
           )}
 
-          {/* Context & Deployment Metadata Table */}
+          {/* 6. Context & Deployment Metadata Table */}
           {details?.context && (
             <div>
               <h3 style={{ fontSize: '0.85rem', fontWeight: '700', textTransform: 'uppercase', color: 'var(--text-subtle)', marginBottom: '16px', letterSpacing: '0.06em' }}>
