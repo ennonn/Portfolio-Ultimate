@@ -1,12 +1,39 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { portfolioData } from '../data/portfolioData';
 
 export default function AboutStats() {
   const { mission } = portfolioData;
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        // Trigger only when scrolling down into section view from top
+        if (entry.isIntersecting && entry.boundingClientRect.top >= 0) {
+          setIsVisible(true);
+        }
+      },
+      {
+        threshold: 0.25, // Triggers when 25% of the section is visible
+      }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, []);
 
   return (
     <section
       id="about"
+      ref={sectionRef}
       className="section-container"
       style={{
         paddingTop: '120px',
@@ -17,7 +44,7 @@ export default function AboutStats() {
         justifyContent: 'center',
       }}
     >
-      {/* Quote Banner Section with Shadcn Text Morph Effect */}
+      {/* Quote Banner Section with Scroll-Triggered Slow Text Morph Effect */}
       <div
         style={{
           display: 'flex',
@@ -28,7 +55,7 @@ export default function AboutStats() {
       >
         <div style={{ maxWidth: '740px' }}>
           <p
-            className="text-morph"
+            className={isVisible ? 'text-morph-active' : 'text-morph-hidden'}
             style={{
               fontSize: 'clamp(1.6rem, 3.5vw, 2.4rem)',
               fontWeight: '700',
@@ -43,7 +70,7 @@ export default function AboutStats() {
 
         <div style={{ maxWidth: '740px', alignSelf: 'flex-end', textAlign: 'right' }}>
           <p
-            className="text-morph-delayed"
+            className={isVisible ? 'text-morph-active-delayed' : 'text-morph-hidden'}
             style={{
               fontSize: 'clamp(1.6rem, 3.5vw, 2.4rem)',
               fontWeight: '700',
