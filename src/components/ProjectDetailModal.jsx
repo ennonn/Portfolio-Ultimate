@@ -22,12 +22,9 @@ export default function ProjectDetailModal({ project, onClose }) {
     if (videoRef.current) {
       videoRef.current.defaultMuted = true;
       videoRef.current.muted = true;
-      const playPromise = videoRef.current.play();
-      if (playPromise !== undefined) {
-        playPromise.catch((err) => {
-          console.log('Autoplay handled:', err);
-        });
-      }
+      videoRef.current.play().catch((err) => {
+        console.log('Autoplay handler:', err);
+      });
     }
   }, [project]);
 
@@ -171,15 +168,14 @@ export default function ProjectDetailModal({ project, onClose }) {
             ))}
           </div>
 
-          {/* 3. DESKTOP SCALE LOOPING GIF VIDEO FRAME */}
+          {/* 3. DESKTOP SCALE LOOPING GIF VIDEO FRAME (NO ROUNDED CORNERS - FLAT EDGES) */}
           <div
             style={{
               width: '100%',
-              borderRadius: '18px',
+              borderRadius: '0px',
               overflow: 'hidden',
               border: '1px solid var(--border-subtle)',
               background: '#09090b',
-              boxShadow: '0 8px 30px rgba(0,0,0,0.2)',
             }}
           >
             <video
@@ -193,12 +189,10 @@ export default function ProjectDetailModal({ project, onClose }) {
               style={{
                 width: '100%',
                 height: 'auto',
+                borderRadius: '0px',
                 display: 'block',
               }}
-            >
-              <source src={project.videoUrl} type="video/mp4" />
-              Your browser does not support HTML5 video playback.
-            </video>
+            />
           </div>
 
           {/* 4. Action Links Bar */}
