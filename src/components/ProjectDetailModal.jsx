@@ -1,20 +1,32 @@
-import React, { useEffect } from 'react';
-import { X, ExternalLink, CheckCircle2, Code2, Server, Layers } from 'lucide-react';
+import React, { useEffect, useRef } from 'react';
+import { X, ExternalLink, CheckCircle2 } from 'lucide-react';
 import { GithubIcon } from './BrandIcons';
 
 export default function ProjectDetailModal({ project, onClose }) {
+  const videoRef = useRef(null);
+
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === 'Escape') onClose();
     };
     window.addEventListener('keydown', handleKeyDown);
-    // Prevent body scroll when modal is open
     document.body.style.overflow = 'hidden';
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
       document.body.style.overflow = 'unset';
     };
   }, [onClose]);
+
+  // Programmatically trigger video autoplay on modal open
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.defaultMuted = true;
+      videoRef.current.muted = true;
+      videoRef.current.play().catch((err) => {
+        console.warn('Autoplay fallback:', err);
+      });
+    }
+  }, [project]);
 
   if (!project) return null;
 
@@ -136,7 +148,7 @@ export default function ProjectDetailModal({ project, onClose }) {
             </p>
           </div>
 
-          {/* Autoplay Looping GIF-style Video Container (No Controls, Touch Disabled) */}
+          {/* Autoplay Looping GIF-style Video Container */}
           <div
             style={{
               width: '100%',
@@ -144,19 +156,20 @@ export default function ProjectDetailModal({ project, onClose }) {
               overflow: 'hidden',
               border: '1px solid var(--border-subtle)',
               background: '#000000',
-              pointerEvents: 'none', // Disables click/touch controls so it acts strictly like a looping GIF
               userSelect: 'none',
             }}
           >
             <video
-              src={project.videoUrl || "https://www.w3schools.com/html/mov_bbb.mp4"}
+              ref={videoRef}
+              src={project.videoUrl}
               autoPlay
               loop
               muted
               playsInline
+              poster={project.image}
               style={{
                 width: '100%',
-                maxHeight: '440px',
+                maxHeight: '460px',
                 objectFit: 'cover',
                 display: 'block',
               }}
@@ -225,7 +238,7 @@ export default function ProjectDetailModal({ project, onClose }) {
             </div>
           </div>
 
-          {/* Architecture Highlights (GitHub/Vercel Minimalist Lines) */}
+          {/* Architecture Highlights */}
           {details?.architecture && (
             <div style={{ paddingBottom: '28px', borderBottom: '1px solid var(--border-subtle)' }}>
               <h3 style={{ fontSize: '0.85rem', fontWeight: '700', textTransform: 'uppercase', color: 'var(--text-subtle)', marginBottom: '16px', letterSpacing: '0.06em' }}>
@@ -258,7 +271,7 @@ export default function ProjectDetailModal({ project, onClose }) {
             </div>
           )}
 
-          {/* Context & Deployment Metadata Table (Minimalist Clean Lines) */}
+          {/* Context & Deployment Metadata Table */}
           {details?.context && (
             <div>
               <h3 style={{ fontSize: '0.85rem', fontWeight: '700', textTransform: 'uppercase', color: 'var(--text-subtle)', marginBottom: '16px', letterSpacing: '0.06em' }}>
