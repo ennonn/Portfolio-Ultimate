@@ -3,6 +3,8 @@ export const portfolioData = {
     name: "Ian Macabulos",
     title: "Full-Stack Developer",
     location: "Pampanga, Philippines",
+    nationality: "Filipino",
+    education: "BS Information Technology (Web Dev)",
     email: "ianmacabulos@gmail.com",
     resumeUrl: "#resume",
     bio: "Full-Stack Developer focused on building practical web applications, robust backend services, and clean user interfaces.",
@@ -10,9 +12,7 @@ export const portfolioData = {
     socials: [
       { name: "GitHub", icon: "Github", url: "https://github.com" },
       { name: "LinkedIn", icon: "Linkedin", url: "https://linkedin.com" },
-      { name: "Email", icon: "Mail", url: "mailto:ianmacabulos@gmail.com" },
-      { name: "TikTok", icon: "Video", url: "https://tiktok.com" },
-      { name: "Peerlist", icon: "Globe", url: "https://peerlist.io" }
+      { name: "Email", icon: "Mail", url: "mailto:ianmacabulos@gmail.com" }
     ]
   },
 

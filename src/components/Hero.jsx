@@ -1,18 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { portfolioData } from '../data/portfolioData';
-import { ArrowRight, Mail, Video, Globe } from 'lucide-react';
+import { ArrowRight, Mail, RotateCw, UserCheck, MapPin, GraduationCap, Code } from 'lucide-react';
 import { GithubIcon, LinkedinIcon } from './BrandIcons';
 
 export default function Hero() {
   const { personal } = portfolioData;
+  const [isFlipped, setIsFlipped] = useState(false);
 
   const getSocialIcon = (name) => {
     switch (name.toLowerCase()) {
       case 'github': return <GithubIcon size={20} />;
       case 'linkedin': return <LinkedinIcon size={20} />;
       case 'email': return <Mail size={20} />;
-      case 'tiktok': return <Video size={20} />;
-      default: return <Globe size={20} />;
+      default: return <Mail size={20} />;
     }
   };
 
@@ -42,26 +42,38 @@ export default function Hero() {
       >
         {/* Left Column: Intro & Headline */}
         <div>
-          {/* Tagline Pill */}
+          {/* Highlighted Status Tag Pill */}
           <div
             style={{
-              display: 'inline-block',
-              padding: '7px 16px',
-              borderRadius: '8px',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '8px',
+              padding: '8px 18px',
+              borderRadius: '9999px',
               background: 'var(--btn-secondary-bg)',
-              border: '1px solid var(--border-subtle)',
-              color: 'var(--text-subtle)',
-              fontSize: '0.85rem',
+              border: '1px solid var(--border-hover)',
+              color: 'var(--text-main)',
+              fontSize: '0.82rem',
               fontWeight: '700',
               marginBottom: '24px',
               textTransform: 'uppercase',
-              letterSpacing: '0.08em',
+              letterSpacing: '0.06em',
+              boxShadow: '0 4px 12px rgba(0,0,0,0.05)',
             }}
           >
-            AVAILABLE FOR ROLES & FREELANCE
+            <span
+              style={{
+                width: '8px',
+                height: '8px',
+                borderRadius: '50%',
+                background: '#10b981',
+                boxShadow: '0 0 8px #10b981',
+              }}
+            />
+            Available for Roles & Freelance
           </div>
 
-          {/* Main Name & Title (Increased Font Sizes) */}
+          {/* Main Name */}
           <h1
             style={{
               fontSize: 'clamp(3.4rem, 6vw, 4.8rem)',
@@ -75,15 +87,15 @@ export default function Hero() {
             {personal.name}
           </h1>
 
+          {/* Role Sub-heading with Shadcn Highlight Text Effect */}
           <h2
             style={{
               fontSize: '1.6rem',
               fontWeight: '600',
-              color: 'var(--text-muted)',
               marginBottom: '24px',
             }}
           >
-            {personal.title}
+            <span className="highlight-text">{personal.title}</span>
           </h2>
 
           <p
@@ -136,7 +148,7 @@ export default function Hero() {
             </a>
           </div>
 
-          {/* Social Icons Container */}
+          {/* Social Icons Container (GitHub, LinkedIn, Email only) */}
           <div
             style={{
               display: 'inline-flex',
@@ -184,49 +196,146 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Right Column: Profile Image Box */}
+        {/* Right Column: Interactive 3D Flip Profile Image Card */}
         <div style={{ display: 'flex', justifyContent: 'center' }}>
           <div
-            className="clean-card"
+            className={`flip-card-container ${isFlipped ? 'is-flipped' : ''}`}
+            onClick={() => setIsFlipped(!isFlipped)}
             style={{
               width: '100%',
-              maxWidth: '500px',
-              padding: '14px',
-              borderRadius: '22px',
+              maxWidth: '480px',
+              height: '440px',
             }}
+            title="Click card to view details"
           >
-            <div
-              style={{
-                width: '100%',
-                height: '420px',
-                borderRadius: '14px',
-                overflow: 'hidden',
-              }}
-            >
-              <img
-                src={personal.heroImage}
-                alt={personal.name}
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  objectFit: 'cover',
-                }}
-              />
-            </div>
-            <div
-              style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                paddingTop: '14px',
-                paddingLeft: '6px',
-                paddingRight: '6px',
-                fontSize: '0.9rem',
-                color: 'var(--text-subtle)',
-                fontWeight: '500',
-              }}
-            >
-              <span>{personal.location}</span>
-              <span>Full-Stack Engineer</span>
+            <div className="flip-card-inner" style={{ height: '100%' }}>
+              {/* FRONT SIDE (Profile Photo) */}
+              <div className="flip-card-front clean-card" style={{ height: '100%', padding: '14px', borderRadius: '22px' }}>
+                <div
+                  style={{
+                    width: '100%',
+                    height: '370px',
+                    borderRadius: '16px',
+                    overflow: 'hidden',
+                    position: 'relative',
+                  }}
+                >
+                  <img
+                    src={personal.heroImage}
+                    alt={personal.name}
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover',
+                    }}
+                  />
+                  <div
+                    style={{
+                      position: 'absolute',
+                      top: '12px',
+                      right: '12px',
+                      padding: '6px 12px',
+                      borderRadius: '9999px',
+                      background: 'rgba(0, 0, 0, 0.65)',
+                      backdropFilter: 'blur(8px)',
+                      color: '#ffffff',
+                      fontSize: '0.75rem',
+                      fontWeight: '600',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '6px',
+                    }}
+                  >
+                    <RotateCw size={12} />
+                    <span>Click to Flip</span>
+                  </div>
+                </div>
+
+                <div
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    paddingTop: '10px',
+                    fontSize: '0.82rem',
+                    color: 'var(--text-subtle)',
+                    fontWeight: '500',
+                    gap: '6px',
+                  }}
+                >
+                  <UserCheck size={14} />
+                  <span>Click card to reveal personal details</span>
+                </div>
+              </div>
+
+              {/* BACK SIDE (Personal Information) */}
+              <div className="flip-card-back clean-card" style={{ padding: '28px', borderRadius: '22px', background: 'var(--bg-card)' }}>
+                <div>
+                  <div
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'space-between',
+                      marginBottom: '20px',
+                      paddingBottom: '12px',
+                      borderBottom: '1px solid var(--border-subtle)',
+                    }}
+                  >
+                    <h3 style={{ fontSize: '1.15rem', fontWeight: '800', color: 'var(--text-main)' }}>
+                      Personal Overview
+                    </h3>
+                    <span style={{ fontSize: '0.78rem', color: 'var(--text-subtle)', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                      <RotateCw size={12} /> Flip Back
+                    </span>
+                  </div>
+
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                    <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
+                      <UserCheck size={18} color="var(--text-muted)" style={{ marginTop: '2px' }} />
+                      <div>
+                        <p style={{ fontSize: '0.78rem', color: 'var(--text-subtle)', fontWeight: '600', textTransform: 'uppercase' }}>Full Name</p>
+                        <p style={{ fontSize: '0.95rem', fontWeight: '700', color: 'var(--text-main)' }}>{personal.name}</p>
+                      </div>
+                    </div>
+
+                    <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
+                      <Code size={18} color="var(--text-muted)" style={{ marginTop: '2px' }} />
+                      <div>
+                        <p style={{ fontSize: '0.78rem', color: 'var(--text-subtle)', fontWeight: '600', textTransform: 'uppercase' }}>Primary Role</p>
+                        <p style={{ fontSize: '0.95rem', fontWeight: '700', color: 'var(--text-main)' }}>{personal.title}</p>
+                      </div>
+                    </div>
+
+                    <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
+                      <MapPin size={18} color="var(--text-muted)" style={{ marginTop: '2px' }} />
+                      <div>
+                        <p style={{ fontSize: '0.78rem', color: 'var(--text-subtle)', fontWeight: '600', textTransform: 'uppercase' }}>Location & Nationality</p>
+                        <p style={{ fontSize: '0.95rem', fontWeight: '700', color: 'var(--text-main)' }}>{personal.location} ({personal.nationality})</p>
+                      </div>
+                    </div>
+
+                    <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
+                      <GraduationCap size={18} color="var(--text-muted)" style={{ marginTop: '2px' }} />
+                      <div>
+                        <p style={{ fontSize: '0.78rem', color: 'var(--text-subtle)', fontWeight: '600', textTransform: 'uppercase' }}>Education</p>
+                        <p style={{ fontSize: '0.95rem', fontWeight: '700', color: 'var(--text-main)' }}>{personal.education}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div
+                  style={{
+                    paddingTop: '14px',
+                    borderTop: '1px solid var(--border-subtle)',
+                    textAlign: 'center',
+                    fontSize: '0.8rem',
+                    color: 'var(--text-subtle)',
+                  }}
+                >
+                  Click anywhere on card to flip back to photo
+                </div>
+              </div>
             </div>
           </div>
         </div>
