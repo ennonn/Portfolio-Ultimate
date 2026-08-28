@@ -171,16 +171,20 @@ export default function ProjectDetailModal({ project, onClose }) {
             ))}
           </div>
 
-          {/* 3. CENTERED DESKTOP FRAME (No Poster Covering Video, Native Controls Included) */}
+          {/* 3. CENTERED DESKTOP FRAME WITH GUARANTEED MIN-HEIGHT (CANNOT COLLAPSE TO 0) */}
           <div
             style={{
               maxWidth: '720px',
               width: '88%',
               margin: '0 auto',
+              minHeight: '360px',
               borderRadius: '0px',
               overflow: 'hidden',
               border: '1px solid var(--border-subtle)',
-              background: '#09090b',
+              background: '#000000',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
               boxShadow: '0 8px 24px rgba(0,0,0,0.12)',
             }}
           >
@@ -195,10 +199,13 @@ export default function ProjectDetailModal({ project, onClose }) {
               controls
               style={{
                 width: '100%',
-                height: 'auto',
+                height: '100%',
+                minHeight: '360px',
+                maxHeight: '440px',
+                objectFit: 'contain',
                 borderRadius: '0px',
                 display: 'block',
-                background: '#09090b',
+                background: '#000000',
               }}
             >
               <source src={project.videoUrl} type="video/mp4" />
