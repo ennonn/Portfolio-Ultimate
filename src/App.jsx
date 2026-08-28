@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import './styles/index.css';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import AboutStats from './components/AboutStats';
